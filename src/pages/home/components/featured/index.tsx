@@ -2,6 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import JobItem from "./jobItem";
 import { CustomLink } from "../../../../components";
+import { languages, locations } from "./data";
+import ListSection from "./listSection";
 
 const Wrapper = styled.div`
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.06), #fafafa);
@@ -24,12 +26,9 @@ const Title = styled.h1`
 const SectionWrapper = styled.div`
     display: flex;
 `;
-const JobListSection = styled.div`
-    width: 65%;
-    padding-right: 1rem;
-`;
+const JobListSection = styled.div``;
 
-const ListSection = styled.div`
+const FollowSection = styled.div`
     background-color: green;
     width: 35%;
 `;
@@ -43,22 +42,62 @@ const LinkContainer = styled.div`
     }
 `;
 
+const LeftSection = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    padding-right: 1rem;
+`;
+
+const HotSearchSection = styled.div`
+    margin-top: 1rem;
+`;
+
+const HotSearchLanguages = styled.div`
+    margin-bottom: 0.5rem;
+`;
+
+const HotSearchLocations = styled.div``;
+
 const FeaturedSection = () => {
     return (
         <Wrapper>
             <Container>
                 <Title>Featured Jobs</Title>
                 <SectionWrapper>
-                    <JobListSection>
-                        <JobItem />
-                        <JobItem />
-                        <LinkContainer>
-                            <CustomLink color="#1D80BE" title="More Awesome Jobs →" url="/positions" />
-                        </LinkContainer>
-                    </JobListSection>
-                    <ListSection>
-                        
-                    </ListSection>
+                    <LeftSection>
+                        <JobListSection>
+                            <JobItem />
+                            <JobItem />
+                            <LinkContainer>
+                                <CustomLink color="#1D80BE" title="More Awesome Jobs →" url="/positions" />
+                            </LinkContainer>
+                        </JobListSection>
+
+                        <HotSearchSection>
+                            <Title>Hot Searches</Title>
+                            <HotSearchLanguages>
+                                <ListSection
+                                    type="language"
+                                    color="#1D80BE"
+                                    underline
+                                    url="/positions?description"
+                                    data={languages} />
+                            </HotSearchLanguages>
+                            <HotSearchLocations>
+                                <ListSection
+                                    type="location"
+                                    color="#1D80BE"
+                                    underline
+                                    url="/positions?location"
+                                    data={locations} />
+                            </HotSearchLocations>
+                        </HotSearchSection>
+                    </LeftSection>
+
+                    <FollowSection>
+
+                    </FollowSection>
                 </SectionWrapper>
             </Container>
         </Wrapper>

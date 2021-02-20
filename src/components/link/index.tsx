@@ -21,9 +21,9 @@ const CustomizedLink = styled(Link)`
 `;
 
 const CustomLink = (props: any) => {
-    const { color, title, url } = props;
+    const { color, title, url, underline } = props;
 
-    return <CustomizedLink color={color} to={url}> {title}</CustomizedLink>
+    return <CustomizedLink color={color} to={url} underline={underline}> {title}</CustomizedLink>
 };
 
 export default CustomLink;

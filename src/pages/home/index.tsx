@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { Header } from "../../components";
 import Search from "./components/search";
+import Featured from "./components/featured";
 
 const Wrapper = styled.div`
     display: flex;
@@ -19,6 +20,7 @@ const HomePage = () => {
             <Wrapper>
                 <Container>
                     <Search />
+                    <Featured />
                 </Container>
             </Wrapper>
         </>

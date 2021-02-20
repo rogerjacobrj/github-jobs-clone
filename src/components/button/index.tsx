@@ -4,8 +4,11 @@ import styled, { css } from "styled-components";
 interface ButtonProps {
     buttonType: string;
 }
+
 const ButtonItem = styled.button`
-    ${(props: ButtonProps) => props.buttonType && css`
+    width: 100%;
+
+    ${(props: ButtonProps) => props.buttonType === "search" && css`
         margin-top: 18px;
         height: 32px;
         padding: 0 20px;
@@ -16,8 +19,8 @@ const ButtonItem = styled.button`
         color: #FFF;
         text-shadow: -1px -1px 0 rgb(0 0 0 / 30%);
         background: #869ca9;
-        background: -webkit-gradient(linear, left top, left bottom, from(#a2b8c5), to(#869ca9));
-        background: -moz-linear-gradient(top, #a2b8c5, #869ca9);
+        background: -webkit-gradient(linear, left top, left bottom, from(#A2B8C5), to(#869CA9));
+        background: -moz-linear-gradient(top, #A2B8C5, #869CA9);
         border: none;
         -webkit-border-radius: 3px;
         -moz-border-radius: 3px;
@@ -25,7 +28,7 @@ const ButtonItem = styled.button`
         cursor: pointer;
 
         &:hover {
-            background: -webkit-gradient(linear, left top, left bottom, from(#8cb8cd), to(#6a9cb6));
+            background: -webkit-gradient(linear, left top, left bottom, from(#8CB8CD), to(#6A9CB6));
         }
     `}
 `;
@@ -34,7 +37,9 @@ const Button = (props: any) => {
     const { text, buttonType } = props;
 
     return (
-        <ButtonItem type="button" buttonType={buttonType}>{text}</ButtonItem>
+        <ButtonItem type="button" buttonType={buttonType}>
+            {text}
+        </ButtonItem>
     );
 };
 

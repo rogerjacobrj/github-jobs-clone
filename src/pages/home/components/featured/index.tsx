@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import JobItem from "./jobItem";
-import { CustomLink } from "../../../../components";
+import { CustomLink, Anchor } from "../../../../components";
 import { languages, locations } from "./data";
 import ListSection from "./listSection";
 
@@ -29,7 +29,7 @@ const SectionWrapper = styled.div`
 const JobListSection = styled.div``;
 
 const FollowSection = styled.div`
-    background-color: green;
+    // background-color: green;
     width: 35%;
 `;
 
@@ -59,6 +59,40 @@ const HotSearchLanguages = styled.div`
 
 const HotSearchLocations = styled.div``;
 
+const FollowButtonContainer = styled.div``;
+
+const FeaturedCompanyContainer = styled.div`
+    background: rgba(0, 0, 0, 0.06);
+    padding: 5px;
+    margin-top: 0.8rem;
+    border-radius: 4px;
+`;
+
+const FeaturedCompanyWrapper = styled.div`
+    background-color: #FFFFFF;
+`;
+
+const FeaturedCompanyTitle = styled.div`
+    color: #333333;
+    border-bottom: 1px solid #ddd;
+    padding: 8px;
+    font-size: 12px;
+    font-weight: bold;
+`;
+
+const FeaturedCompanyLogoContainer = styled.div`
+    padding: 8px;
+    background-color: green;
+`;
+
+const FeaturedCompanyLogo = styled.img``;
+
+const FeaturedJobCount = styled.div`
+    padding: 8px;
+    color: #1D80BE;
+    font-size: 12px;
+`;
+
 const FeaturedSection = () => {
     return (
         <Wrapper>
@@ -70,7 +104,7 @@ const FeaturedSection = () => {
                             <JobItem />
                             <JobItem />
                             <LinkContainer>
-                                <CustomLink color="#1D80BE" title="More Awesome Jobs →" url="/positions" />
+                                <CustomLink color="#1D80BE" title="More Awesome Jobs →" url="/positions" bold={1} />
                             </LinkContainer>
                         </JobListSection>
 
@@ -80,7 +114,7 @@ const FeaturedSection = () => {
                                 <ListSection
                                     type="language"
                                     color="#1D80BE"
-                                    underline
+                                    underline={1}
                                     url="/positions?description"
                                     data={languages} />
                             </HotSearchLanguages>
@@ -88,7 +122,7 @@ const FeaturedSection = () => {
                                 <ListSection
                                     type="location"
                                     color="#1D80BE"
-                                    underline
+                                    underline={1}
                                     url="/positions?location"
                                     data={locations} />
                             </HotSearchLocations>
@@ -96,7 +130,28 @@ const FeaturedSection = () => {
                     </LeftSection>
 
                     <FollowSection>
+                        <FollowButtonContainer>
+                            <Anchor
+                                showIcon
+                                applyStyle={true}
+                                icon="./twitter.png"
+                                color="#1D80BE"
+                                iconAlt="Follow on Twitter"
+                                url="https://twitter.com/GitHubJobs"
+                                text="Follow GitHub Jobs on Twitter" />
+                        </FollowButtonContainer>
 
+                        <FeaturedCompanyContainer>
+                            <FeaturedCompanyWrapper>
+                                <FeaturedCompanyTitle>Featured Company</FeaturedCompanyTitle>
+                                <FeaturedCompanyLogoContainer>
+                                    <FeaturedCompanyLogo></FeaturedCompanyLogo>
+                                </FeaturedCompanyLogoContainer>
+                                <FeaturedJobCount>
+                                    <CustomLink color="#1D80BE" title="3 Jobs at Taxfix" url="/" bold={0} />
+                                </FeaturedJobCount>
+                            </FeaturedCompanyWrapper>
+                        </FeaturedCompanyContainer>
                     </FollowSection>
                 </SectionWrapper>
             </Container>

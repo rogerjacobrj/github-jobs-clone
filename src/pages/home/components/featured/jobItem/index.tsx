@@ -43,7 +43,11 @@ const JobItem = () => {
     return (
         <Wrapper>
             <TitleContainer>
-                <CustomLink color="#1d80be" title="Java Software Developer (m/w/d)" url="https://jobs.github.com/positions/ad2f2bf9-ac3a-45b9-9e81-6b63728bac48" />
+                <CustomLink
+                    bold={1}
+                    color="#1d80be"
+                    title="Java Software Developer (m/w/d)"
+                    url="https://jobs.github.com/positions/ad2f2bf9-ac3a-45b9-9e81-6b63728bac48" />
                 <Company>Taxfix - <JobType> Full time</JobType></Company>
             </TitleContainer>
             <LocationContainer>

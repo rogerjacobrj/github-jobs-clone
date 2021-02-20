@@ -23,11 +23,11 @@ const ListSection = (props: any) => {
     return (
         <ListWrapper>
             {data.map((item: { name: string }, idx: number) => {
-                return <ListWrapperItem>
+                return <ListWrapperItem key={`${type}-${idx}`}>
                     <CustomLink
-                        key={`${type}-${idx}`}
                         color={color}
                         title={item.name}
+                        bold={1}
                         underline={underline}
                         url={`${url}=${item.name}`} />
                     {idx !== index && <ListItemSeperator>.</ListItemSeperator>}

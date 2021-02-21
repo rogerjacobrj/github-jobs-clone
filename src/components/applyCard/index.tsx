@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Preview } from "../../../components";
+import { Preview } from "..";
 
 const Wrapper = styled.div`
     background-color: #edeee1;

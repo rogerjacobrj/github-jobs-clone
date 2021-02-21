@@ -7,7 +7,7 @@ interface LinkProps {
     underline?: number;
     bold?: number;
     fontSize?: string;
-    hoverDecoration?: boolean;
+    hoverdecoration?: boolean;
 }
 
 const CustomizedLink = styled(Link)`
@@ -27,7 +27,7 @@ const CustomizedLink = styled(Link)`
         text-decoration: underline;
     `} 
     
-    ${(props: LinkProps) => !props.hoverDecoration && css`
+    ${(props: LinkProps) => !props.hoverdecoration && css`
         &:hover {
             text-decoration: none;
         }
@@ -35,14 +35,14 @@ const CustomizedLink = styled(Link)`
 `;
 
 const CustomLink = (props: any) => {
-    const { color, title, url, underline, bold, fontSize, hoverDecoration } = props;
+    const { color, title, url, underline, bold, fontSize, hoverdecoration } = props;
 
     return <CustomizedLink
         color={color}
         bold={bold}
         to={url}
         fontSize={fontSize}
-        hoverDecoration={hoverDecoration}
+        hoverdecoration={hoverdecoration}
         underline={underline}>
         {title}
     </CustomizedLink>

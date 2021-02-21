@@ -31,13 +31,42 @@ const ButtonItem = styled.button`
             background: -webkit-gradient(linear, left top, left bottom, from(#8CB8CD), to(#6A9CB6));
         }
     `}
+
+    ${(props: ButtonProps) => props.buttonType === "clickEvent" && css`
+        padding: 0 5px;
+        line-height: 27px;
+        text-align: center;
+        text-decoration: none;
+        font-weight: bold;
+        color: #fff;
+        font-size: 12px;
+        text-shadow: -1px -1px 0 #2371a3;
+        background: #1e81bf;
+        border: none;
+        outline: none;
+        background: -webkit-gradient(linear, left top, left bottom, from(#46a9e7), to(#1e81bf));
+        background: -moz-linear-gradient(top, #46a9e7, #1e81bf);
+        -webkit-border-radius: 4px;
+        -moz-border-radius: 4px;
+        -webkit-text-stroke: 1px transparent;
+
+        &:hover {
+            background: -webkit-gradient(linear, left top, left bottom, from(#2b91e2), to(#125db3));
+        }
+    `}
 `;
 
 const Button = (props: any) => {
-    const { text, buttonType } = props;
+    const { text, buttonType, clickEvent, clickHandler } = props;
+
+    const onButtonClick = () => {
+        clickHandler();
+    };
 
     return (
-        <ButtonItem type="button" buttonType={buttonType}>
+        <ButtonItem type="button" buttonType={buttonType} onClick={() => {
+            return clickEvent === true && onButtonClick()
+        }}>
             {text}
         </ButtonItem>
     );

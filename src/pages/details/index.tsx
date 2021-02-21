@@ -1,8 +1,10 @@
 import React from "react";
 import styled from "styled-components";
-import { Header, Footer, CustomLink, CompanyCard, Preview } from "../../components";
+import {
+    Header, Footer, CustomLink, CompanyCard,
+    Preview, SubscribeCard, ApplyCard
+} from "../../components";
 import { GradientWrapper, ContentContainer } from "../../styles";
-import ApplyCard from "./applyCard";
 
 const Section = styled.div`
     display: flex;
@@ -87,12 +89,13 @@ const DetailsPage = () => {
 
                                 <MainContainer>
                                     <LeftSection>
-                                        <Preview content=""/>
+                                        <Preview content="" />
                                     </LeftSection>
 
                                     <AboutCompany>
                                         <CompanyCard />
                                         <ApplyCard />
+                                        <SubscribeCard />
                                     </AboutCompany>
                                 </MainContainer>
                             </ContentContainer>

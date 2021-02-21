@@ -68,14 +68,14 @@ const CompanyCard = () => {
                 <CompanyHeader>
                     <CompanyTitle>Featured Company</CompanyTitle>
                     <CompanyJobCount>
-                        <CustomLink color="#1D80BE" title="2 other jobs" url="/" bold={0} fontSize="11" hoverDecoration={0} />
+                        <CustomLink color="#1D80BE" title="2 other jobs" url="/" bold={0} fontSize="11" hoverdecoration={0} />
                     </CompanyJobCount>
                 </CompanyHeader>
                 <CompanyLogoContainer>
                     <CompanyLogo></CompanyLogo>
                 </CompanyLogoContainer>
                 <FeaturedJobCount>
-                    <CustomLink color="#1D80BE" title="3 Jobs at Taxfix" url="/" bold={0} underline={1} hoverDecoration={1} />
+                    <CustomLink color="#1D80BE" title="3 Jobs at Taxfix" url="/" bold={0} underline={1} hoverdecoration={1} />
                 </FeaturedJobCount>
             </CompanyWrapper>
         </CompanyContainer>

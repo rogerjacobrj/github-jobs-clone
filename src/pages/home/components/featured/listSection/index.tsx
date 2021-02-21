@@ -28,6 +28,7 @@ const ListSection = (props: any) => {
                         color={color}
                         title={item.name}
                         bold={1}
+                        hoverDecoration={1}
                         underline={underline}
                         url={`${url}=${item.name}`} />
                     {idx !== index && <ListItemSeperator>.</ListItemSeperator>}

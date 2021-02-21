@@ -1,20 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 import JobItem from "./jobItem";
-import { CustomLink, Anchor } from "../../../../components";
+import { CustomLink, Anchor, CompanyCard } from "../../../../components";
 import { languages, locations } from "./data";
 import ListSection from "./listSection";
-
-const Wrapper = styled.div`
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.06), #fafafa);
-    padding: 4px;
-    margin-top: 0.86rem;
-`;
-
-const Container = styled.div`
-    background: #FFFFFF;
-    padding: 1rem
-`;
+import { GradientWrapper, ContentContainer } from "../../../../styles";
 
 const Title = styled.h1`
     padding-bottom: 15px;
@@ -29,7 +19,6 @@ const SectionWrapper = styled.div`
 const JobListSection = styled.div``;
 
 const FollowSection = styled.div`
-    // background-color: green;
     width: 35%;
 `;
 
@@ -61,42 +50,10 @@ const HotSearchLocations = styled.div``;
 
 const FollowButtonContainer = styled.div``;
 
-const FeaturedCompanyContainer = styled.div`
-    background: rgba(0, 0, 0, 0.06);
-    padding: 5px;
-    margin-top: 0.8rem;
-    border-radius: 4px;
-`;
-
-const FeaturedCompanyWrapper = styled.div`
-    background-color: #FFFFFF;
-`;
-
-const FeaturedCompanyTitle = styled.div`
-    color: #333333;
-    border-bottom: 1px solid #ddd;
-    padding: 8px;
-    font-size: 12px;
-    font-weight: bold;
-`;
-
-const FeaturedCompanyLogoContainer = styled.div`
-    padding: 8px;
-    background-color: green;
-`;
-
-const FeaturedCompanyLogo = styled.img``;
-
-const FeaturedJobCount = styled.div`
-    padding: 8px;
-    color: #1D80BE;
-    font-size: 12px;
-`;
-
 const FeaturedSection = () => {
     return (
-        <Wrapper>
-            <Container>
+        <GradientWrapper>
+            <ContentContainer>
                 <Title>Featured Jobs</Title>
                 <SectionWrapper>
                     <LeftSection>
@@ -141,21 +98,11 @@ const FeaturedSection = () => {
                                 text="Follow GitHub Jobs on Twitter" />
                         </FollowButtonContainer>
 
-                        <FeaturedCompanyContainer>
-                            <FeaturedCompanyWrapper>
-                                <FeaturedCompanyTitle>Featured Company</FeaturedCompanyTitle>
-                                <FeaturedCompanyLogoContainer>
-                                    <FeaturedCompanyLogo></FeaturedCompanyLogo>
-                                </FeaturedCompanyLogoContainer>
-                                <FeaturedJobCount>
-                                    <CustomLink color="#1D80BE" title="3 Jobs at Taxfix" url="/" bold={0} />
-                                </FeaturedJobCount>
-                            </FeaturedCompanyWrapper>
-                        </FeaturedCompanyContainer>
+                        <CompanyCard />
                     </FollowSection>
                 </SectionWrapper>
-            </Container>
-        </Wrapper>
+            </ContentContainer>
+        </GradientWrapper>
     );
 };
 

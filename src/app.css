@@ -22,3 +22,15 @@ body {
   height: 100%;
   background: #FAFAFA !important;
 }
+
+.ql-container.ql-snow {
+  border: none !important;
+}
+
+.ql-editor p, ul {
+  margin-bottom: 1rem !important;
+}
+
+.applyPreview .ql-editor {
+  padding: 12px 8px;
+}

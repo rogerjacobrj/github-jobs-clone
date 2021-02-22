@@ -4,6 +4,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { CustomLink } from "../index";
 
 const CustomContainer = styled(Container)`
     padding-left: 0;
@@ -56,15 +57,15 @@ const Type = styled.div`
 
 const Jobs = styled.div``;
 
-const CustomLink = styled(Link)`
-    color: #FFFFFF;
-    font-size: 0.85rem;
-    font-weight: bold;
+// const CustomLink = styled(Link)`
+//     color: #FFFFFF;
+//     font-size: 0.85rem;
+//     font-weight: bold;
 
-    &:hover {
-        color: #FFFFFF;
-    }
-`;
+//     &:hover {
+//         color: #FFFFFF;
+//     }
+// `;
 
 const NavList = styled.ul`
     display: flex;
@@ -90,20 +91,41 @@ const Header = () => {
                 <Col>
                     <Wrapper>
                         <Section>
-                            <Brand>
-                                <Logo>GitHub</Logo>
-                                <Type>&nbsp;Jobs</Type>
-                            </Brand>
+                            <CustomLink
+                                color="#FFFFFF"
+                                bold={0}
+                                hoverdecoration={0}
+                                url="/">
+                                <Brand>
+                                    <Logo>GitHub</Logo>
+                                    <Type>&nbsp;Jobs</Type>
+                                </Brand>
+                            </CustomLink>
                             <Jobs>
                                 <NavList>
                                     <NavListItem>
-                                        <CustomLink to="/positions">All jobs</CustomLink>
+                                        <CustomLink
+                                            color="#FFFFFF"
+                                            bold={0}
+                                            hoverdecoration={0}
+                                            title="All jobs"
+                                            url="/positions" />
                                     </NavListItem>
                                     <NavListItem>
-                                        <CustomLink to="/positions">Post a job</CustomLink>
+                                        <CustomLink
+                                            color="#FFFFFF"
+                                            bold={0}
+                                            hoverdecoration={0}
+                                            title="Post a job"
+                                            url="/" />
                                     </NavListItem>
                                     <NavListItem>
-                                        <CustomLink to="/positions">How it works</CustomLink>
+                                        <CustomLink
+                                            color="#FFFFFF"
+                                            bold={0}
+                                            hoverdecoration={0}
+                                            title="How it works"
+                                            url="/" />
                                     </NavListItem>
                                 </NavList>
                             </Jobs>

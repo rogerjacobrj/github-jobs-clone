@@ -21,6 +21,10 @@ const CustomizedLink = styled(Link)`
 
     ${(props: LinkProps) => props.color && css`
         color: ${(props: LinkProps) => props.color};
+
+        &:hover {
+            color: ${(props: LinkProps) => props.color};
+        }
     `}
 
     ${(props: LinkProps) => props.underline === 1 && css`
@@ -35,7 +39,7 @@ const CustomizedLink = styled(Link)`
 `;
 
 const CustomLink = (props: any) => {
-    const { color, title, url, underline, bold, fontSize, hoverdecoration } = props;
+    const { color, title, url, underline, bold, fontSize, hoverdecoration, children } = props;
 
     return <CustomizedLink
         color={color}
@@ -44,7 +48,7 @@ const CustomLink = (props: any) => {
         fontSize={fontSize}
         hoverdecoration={hoverdecoration}
         underline={underline}>
-        {title}
+        {children ? children : title}
     </CustomizedLink>
 };
 

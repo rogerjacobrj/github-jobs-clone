@@ -9,19 +9,21 @@ export const initFetchJobs = (): Types.InitFetchJobs => {
     };
 };
 
-export const fetchJobs = (page: number): Types.FetchJobs => {
+export const fetchJobs = (page: number, pageType: string): Types.FetchJobs => {
     return {
         type: ActionTypes.FETCH_JOBS,
+        pageType: pageType,
         page: page
     };
 };
 
 export const fetchFetchJobsSuccess = (
-    data: Types.FeaturedJobItem[]
+    data: Types.FeaturedJobItem[], pageType: string
 ): Types.FetchJobsSuccess => {
     return {
         type: ActionTypes.FETCH_JOBS_SUCCESS,
         data: data,
+        pageType: pageType
     };
 };
 

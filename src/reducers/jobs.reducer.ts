@@ -31,6 +31,7 @@ export const jobs = (
 
         case ActionTypes.FETCH_JOBS_SUCCESS: {
             let isEnd = false;
+            let data = state.data;
 
             for (let i = 0; i < action.data.length; i++) {
                 let day = dateToTime(action.data[i].created_at);
@@ -43,11 +44,17 @@ export const jobs = (
                 isEnd = true;
             }
 
+            if (action.pageType === "home") {
+                data = action.data;
+            } else {
+                data = data.concat(action.data);
+            }
+
             return {
                 ...state,
                 status: ActionTypes.LOADED,
                 error: false,
-                data: state.data.concat(action.data),
+                data: data,
                 company: company,
                 isEnd: isEnd
             };

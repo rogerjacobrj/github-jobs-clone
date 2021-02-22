@@ -36,7 +36,7 @@ const HomePage = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchJobs(1));
+        dispatch(fetchJobs(1, "home"));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

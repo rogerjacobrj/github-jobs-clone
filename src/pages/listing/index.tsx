@@ -9,7 +9,6 @@ import { isLoading } from "../../helpers/store";
 import { GradientWrapper, ContentContainer, Loading } from "../../styles";
 import { SectionWrapper, MainSection, FooterSection, SubWrapper, WidthContainer, SectionTitle } from "../../styles";
 
-
 const LeftSectionWrapper = styled.div`
     display:flex;
 `;
@@ -22,13 +21,6 @@ const LeftSection = styled.div`
 `;
 
 const FollowButtonContainer = styled.div``;
-
-const Title = styled.h1`
-    padding-bottom: 15px;
-    font-size: 22px;
-    color: #294455;
-    border-bottom: 1px solid #ddd;
-`;
 
 const JobListSection = styled.div``;
 
@@ -49,7 +41,7 @@ const ListingPage = () => {
 
     useEffect(() => {
         if (data.length === 0) {
-            dispatch(fetchJobs(page));
+            dispatch(fetchJobs(page, "list"));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -60,7 +52,7 @@ const ListingPage = () => {
 
     useEffect(() => {
         if (page > 1) {
-            dispatch(fetchJobs(page));
+            dispatch(fetchJobs(page, "list"));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [page]);

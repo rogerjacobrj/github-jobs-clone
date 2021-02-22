@@ -12,7 +12,7 @@ export function* getJobs(action: FetchJobs) {
 
         let data: FeaturedJobItem[] = response.data;
 
-        yield put(actions.fetchFetchJobsSuccess(data));
+        yield put(actions.fetchFetchJobsSuccess(data, action.pageType));
     } catch (error) {
         yield put(actions.fetchFetchJobsFailure(error.message));
     }

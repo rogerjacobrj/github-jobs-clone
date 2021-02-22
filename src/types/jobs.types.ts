@@ -6,12 +6,14 @@ export interface InitFetchJobs {
 
 export interface FetchJobs {
     type: ActionTypes.FETCH_JOBS;
+    pageType: string;
     page: number;
 }
 
 export interface FetchJobsSuccess {
     type: ActionTypes.FETCH_JOBS_SUCCESS;
     data: FeaturedJobItem[];
+    pageType: string;
 }
 
 export interface FetchJobsError {

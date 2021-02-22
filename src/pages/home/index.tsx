@@ -1,47 +1,18 @@
 import React, { useEffect } from "react";
-import styled from "styled-components";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { Store } from "../../reducers";
-import { fetchFeaturedJobs } from "../../actions/featuredJobs.actions";
-import { Header, Footer } from "../../components";
-import Search from "./components/search";
+import { fetchJobs } from "../../actions/jobs.actions";
+import { Header, Footer, SearchSection } from "../../components";
 import Featured from "./components/featured";
 import { isLoading } from "../../helpers/store";
-
-const Section = styled.div`
-    display: flex;
-    justify-content: space-between;
-    flex-direction: column;
-    height: 100%;
-`;
-
-const MainSection = styled.div``;
-
-const FooterSection = styled.div`
-    display: flex;
-    justify-content: center;
-    font-size: 13px;
-    color: #999;
-    background: #f5f5f5;
-    border-top: 1px solid #ddd;
-    padding: 1rem 0;
-`;
-
-const Wrapper = styled.div`
-    display: flex;
-    justify-content: center;
-`;
-
-const Container = styled.div`
-    width: 920px;
-`;
+import { SectionWrapper, MainSection, FooterSection, SubWrapper, WidthContainer } from "../../styles";
 
 const HomePage = () => {
     const dispatch = useDispatch();
-    const featuredJobState = useSelector((state: Store) => state.featuredJobs);
+    const jobState = useSelector((state: Store) => state.jobs);
 
-    let { data, company, status } = featuredJobState;
+    let { data, company, status } = jobState;
     const itemCount = data.length;
 
     const getRandomIndex = () => {
@@ -65,28 +36,28 @@ const HomePage = () => {
     }
 
     useEffect(() => {
-        dispatch(fetchFeaturedJobs());
+        dispatch(fetchJobs(1));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
-        <Section>
+        <SectionWrapper>
             <MainSection>
                 <Header />
-                <Wrapper>
-                    <Container>
-                        <Search />
+                <SubWrapper>
+                    <WidthContainer>
+                        <SearchSection />
                         <Featured jobs={data} featured={company} isLoading={isLoading(status)} />
-                    </Container>
-                </Wrapper>
+                    </WidthContainer>
+                </SubWrapper>
             </MainSection>
 
             <FooterSection>
-                <Container>
+                <WidthContainer>
                     <Footer />
-                </Container>
+                </WidthContainer>
             </FooterSection>
-        </Section>
+        </SectionWrapper>
     );
 };
 

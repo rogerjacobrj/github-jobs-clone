@@ -1,28 +1,29 @@
 import { ActionTypes } from "../actions/types";
 
-export interface InitFetchFeaturedJobs {
-    type: ActionTypes.FETCH_FEATURED_JOBS_LOADING;
+export interface InitFetchJobs {
+    type: ActionTypes.FETCH_JOBS_LOADING;
 }
 
-export interface FetchFeaturedJobs {
-    type: ActionTypes.FETCH_FEATURED_JOBS;
+export interface FetchJobs {
+    type: ActionTypes.FETCH_JOBS;
+    page: number;
 }
 
-export interface FetchFeaturedJobsSuccess {
-    type: ActionTypes.FETCH_FEATURED_JOBS_SUCCESS;
+export interface FetchJobsSuccess {
+    type: ActionTypes.FETCH_JOBS_SUCCESS;
     data: FeaturedJobItem[];
 }
 
-export interface FetchFeaturedJobsError {
-    type: ActionTypes.FETCH_FEATURED_JOBS_ERROR;
+export interface FetchJobsError {
+    type: ActionTypes.FETCH_JOBS_ERROR;
     message: string;
 }
 
 export type FetchFeaturedJobActions =
-    | InitFetchFeaturedJobs
-    | FetchFeaturedJobs
-    | FetchFeaturedJobsSuccess
-    | FetchFeaturedJobsError;
+    | InitFetchJobs
+    | FetchJobs
+    | FetchJobsSuccess
+    | FetchJobsError;
 
 // Job item
 export interface FeaturedJobItem {
@@ -47,10 +48,11 @@ export interface Company {
 }
 
 // Reducer state
-export interface FeaturedJobStore {
+export interface JobStore {
     status: string;
     error: boolean;
     message: string;
     data: FeaturedJobItem[];
     company: Company;
+    isEnd: boolean;
 }

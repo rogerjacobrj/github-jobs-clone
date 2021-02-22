@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { CustomLink } from "../index";
-import { Company } from "../../types/featuredJobs.types";
+import { Company } from "../../types/jobs.types";
 import { Loading } from "../../styles";
 
 const CompanyContainer = styled.div`

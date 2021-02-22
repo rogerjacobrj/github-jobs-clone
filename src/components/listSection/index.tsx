@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { CustomLink } from "../../../../../components";
+import { CustomLink } from "../index";
 
 const ListWrapper = styled.div`
     display: flex;

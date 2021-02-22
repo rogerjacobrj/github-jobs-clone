@@ -1,14 +1,14 @@
 import React from "react";
 import styled, { css } from "styled-components";
 
-interface ButtonProps {
+interface ButtonStyleProps {
     buttonType: string;
 }
 
 const ButtonItem = styled.button`
     width: 100%;
 
-    ${(props: ButtonProps) => props.buttonType === "search" && css`
+    ${(props: ButtonStyleProps) => props.buttonType === "search" && css`
         margin-top: 18px;
         height: 32px;
         padding: 0 20px;
@@ -32,7 +32,7 @@ const ButtonItem = styled.button`
         }
     `}
 
-    ${(props: ButtonProps) => props.buttonType === "clickEvent" && css`
+    ${(props: ButtonStyleProps) => props.buttonType === "clickEvent" && css`
         padding: 0 5px;
         line-height: 27px;
         text-align: center;
@@ -56,7 +56,14 @@ const ButtonItem = styled.button`
     `}
 `;
 
-const Button = (props: any) => {
+interface ButtonProps {
+    text: string;
+    buttonType: string;
+    clickEvent?: boolean;
+    clickHandler: () => void;
+}
+
+const Button = (props: ButtonProps) => {
     const { text, buttonType, clickEvent, clickHandler } = props;
 
     const onButtonClick = () => {

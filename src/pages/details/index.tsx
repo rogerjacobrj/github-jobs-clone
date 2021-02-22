@@ -93,7 +93,7 @@ const DetailsPage = () => {
                                     </LeftSection>
 
                                     <AboutCompany>
-                                        <CompanyCard />
+                                        {/* <CompanyCard /> */}
                                         <ApplyCard />
                                         <SubscribeCard />
                                     </AboutCompany>

@@ -63,10 +63,10 @@ const SubscribeCard = () => {
 
     return (
         <Container>
-            <Modal title="Subscribe by Email" clickHandler={onClickHandler}>
+            {/* <Modal title="Subscribe by Email" clickHandler={onClickHandler}>
                 <ModalText> We promise not to spam or share your email.</ModalText>
                 <InputField type="text" placeholder="Enter email address" />
-            </Modal>
+            </Modal> */}
             <Wrapper>
                 <Header>
                     <Title>Subscribe to email updates</Title>

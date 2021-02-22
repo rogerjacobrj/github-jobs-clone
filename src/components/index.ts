@@ -9,8 +9,12 @@ import Preview from "./preview";
 import SubscribeCard from "./subscribeCard";
 import ApplyCard from "./applyCard";
 import Modal from "./modal";
+import SearchSection from "./searchSection";
+import JobItem from "./jobItem";
+import ListSection from "./listSection";
 
 export {
     Header, Input, Button, Preview, SubscribeCard, Modal,
-    CustomLink, Anchor, Footer, CompanyCard, ApplyCard
+    CustomLink, Anchor, Footer, CompanyCard, ApplyCard,
+    SearchSection, JobItem, ListSection
 }

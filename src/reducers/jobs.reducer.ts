@@ -1,26 +1,27 @@
 
 import { ActionTypes } from "../actions/types";
-import { FeaturedJobStore, FetchFeaturedJobActions } from "../types/featuredJobs.types";
+import { JobStore, FetchFeaturedJobActions } from "../types/jobs.types";
 import { dateToTime, setFeaturedCompany } from "../helpers/store";
 
-const featuredJobStore = {
+const jobStore = {
     status: ActionTypes.NOT_LOADED,
     error: false,
     message: "",
     data: [],
+    isEnd: false,
     company: {
         name: "",
         logo: "",
         jobCount: 0
-    }
+    },
 };
 
-export const featuredJobs = (
-    state: FeaturedJobStore = featuredJobStore,
+export const jobs = (
+    state: JobStore = jobStore,
     action: FetchFeaturedJobActions
 ) => {
     switch (action.type) {
-        case ActionTypes.FETCH_FEATURED_JOBS_LOADING: {
+        case ActionTypes.FETCH_JOBS_LOADING: {
             return {
                 ...state,
                 status: ActionTypes.IS_LOADING,
@@ -28,7 +29,8 @@ export const featuredJobs = (
             };
         }
 
-        case ActionTypes.FETCH_FEATURED_JOBS_SUCCESS: {
+        case ActionTypes.FETCH_JOBS_SUCCESS: {
+            let isEnd = false;
 
             for (let i = 0; i < action.data.length; i++) {
                 let day = dateToTime(action.data[i].created_at);
@@ -37,16 +39,21 @@ export const featuredJobs = (
 
             let company = setFeaturedCompany(action.data);
 
+            if (action.data.length < 50) {
+                isEnd = true;
+            }
+
             return {
                 ...state,
                 status: ActionTypes.LOADED,
                 error: false,
                 data: state.data.concat(action.data),
-                company: company
+                company: company,
+                isEnd: isEnd
             };
         }
 
-        case ActionTypes.FETCH_FEATURED_JOBS_ERROR: {
+        case ActionTypes.FETCH_JOBS_ERROR: {
             return {
                 ...state,
                 status: ActionTypes.LOADING_FAILED,

@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { CustomLink } from "../../../../../components";
-import { FeaturedJobItem } from "../../../../../types/featuredJobs.types";
+import { CustomLink } from "../index";
+import { FeaturedJobItem } from "../../types/jobs.types";
 
 const Wrapper = styled.div`
     border-bottom: 1px solid #ddd;
@@ -14,7 +14,9 @@ const Wrapper = styled.div`
     }
 `;
 
-const TitleContainer = styled.div``;
+const TitleContainer = styled.div`
+    width: 70%;
+`;
 
 const Company = styled.div`
     color: #999;

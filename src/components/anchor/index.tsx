@@ -21,6 +21,7 @@ const AnchorItem = styled.a`
         -webkit-border-radius: 5px;
         -moz-border-radius: 5px;
         border-radius: 5px;
+        margin-bottom: 0.5rem;
     `}
 
     ${(props: AnchorProps) => !props.applyStyle && css`

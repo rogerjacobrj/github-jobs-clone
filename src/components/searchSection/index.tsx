@@ -2,7 +2,7 @@ import React from "react";
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import styled from "styled-components";
-import { Input, Button } from "../../../../components";
+import { Input, Button } from "../index";
 
 const Section = styled.div`
     padding-top: 20px;
@@ -29,6 +29,9 @@ const CheckboxContainer = styled.div`
 const ButtonContainer = styled.div``;
 
 const SearchSection = () => {
+
+    const clickHandler = () => { }
+
     return (
         <Section>
             <Container>
@@ -50,7 +53,7 @@ const SearchSection = () => {
                             <input type="checkbox" /> Full time only
                     </CheckboxContainer>
                         <ButtonContainer>
-                            <Button text="Search" buttonType="search" />
+                            <Button text="Search" buttonType="search" clickHandler={clickHandler} />
                         </ButtonContainer>
                     </Wrapper>
                 </Row>

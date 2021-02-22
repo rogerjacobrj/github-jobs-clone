@@ -1,11 +1,9 @@
 import React from "react";
 import styled from "styled-components";
-import JobItem from "./jobItem";
-import { CustomLink, Anchor, CompanyCard } from "../../../../components";
+import { CustomLink, Anchor, CompanyCard, JobItem, ListSection } from "../../../../components";
 import { languages, locations } from "./data";
-import ListSection from "./listSection";
-import { GradientWrapper, ContentContainer, Loading } from "../../../../styles";
-import { Company, FeaturedJobItem } from "../../../../types/featuredJobs.types";
+import { GradientWrapper, ContentContainer, Loading, SectionTitle } from "../../../../styles";
+import { Company, FeaturedJobItem } from "../../../../types/jobs.types";
 
 const Title = styled.h1`
     padding-bottom: 15px;
@@ -63,7 +61,7 @@ const FeaturedSection = (props: FeaturedSectionProps) => {
     return (
         <GradientWrapper>
             <ContentContainer>
-                <Title>Featured Jobs</Title>
+                <SectionTitle>Featured Jobs</SectionTitle>
                 <SectionWrapper>
                     <LeftSection>
                         <JobListSection>
@@ -76,7 +74,7 @@ const FeaturedSection = (props: FeaturedSectionProps) => {
                         </JobListSection>
 
                         <HotSearchSection>
-                            <Title>Hot Searches</Title>
+                            <SectionTitle>Hot Searches</SectionTitle>
                             <HotSearchLanguages>
                                 <ListSection
                                     type="language"

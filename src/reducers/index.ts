@@ -1,11 +1,11 @@
 import { combineReducers } from "redux";
-import { featuredJobs } from "./featuredJobs.reducer";
-import { FeaturedJobStore } from "../types/featuredJobs.types";
+import { jobs } from "./jobs.reducer";
+import { JobStore } from "../types/jobs.types";
 
 export interface Store {
-    featuredJobs: FeaturedJobStore
+    jobs: JobStore
 }
 
 export default combineReducers<Store>({
-    featuredJobs: featuredJobs
+    jobs: jobs
 });

@@ -1,5 +1,5 @@
 import { ActionTypes } from "../../actions/types";
-import { FeaturedJobItem } from "../../types/featuredJobs.types";
+import { FeaturedJobItem } from "../../types/jobs.types";
 
 export const isLoaded = (status: string) => {
     return ActionTypes.LOADED === status;

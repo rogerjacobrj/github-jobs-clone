@@ -60,33 +60,35 @@ const ClickButton = styled.div`
 
 const Modal = (props: any) => {
 
-    const { cancel, clickHandler } = props;
-    // Disable the body scroll
-    useEffect(() => {
-        document.body.style.overflow = "hidden";
+  const { clickHandler, isValid } = props;
 
-        return () => {
-            document.body.style.overflow = "auto";
-        };
-    }, []);
+  // Disable the body scroll
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
 
-    return (
-        <>
-            <Backdrop />
-            <Wrapper>
-                <Header>
-                    <Title>{props.title}</Title>
-                    <ClickButton onClick={() => cancel()}>X</ClickButton>
-                </Header>
-                {props.children && (
-                    <Content>{props.children}</Content>
-                )}
-                <Footer>
-                    <Button text="Subscribe" buttonType="clickEvent" clickEvent clickHandler={clickHandler} />
-                </Footer>
-            </Wrapper>
-        </>
-    );
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
+  return (
+    <>
+      <Backdrop />
+      <Wrapper>
+        <Header>
+          <Title>{props.title}</Title>
+          <ClickButton onClick={() => clickHandler()}>X</ClickButton>
+        </Header>
+        {props.children && (
+          <Content>{props.children}</Content>
+        )}
+        <Footer>
+          <Button text="Subscribe" disabled={!isValid}
+            buttonType="clickEvent" clickEvent clickHandler={clickHandler} />
+        </Footer>
+      </Wrapper>
+    </>
+  );
 };
 
 export default Modal;

@@ -61,17 +61,18 @@ interface ButtonProps {
     buttonType: string;
     clickEvent?: boolean;
     clickHandler: () => void;
+    disabled?: boolean
 }
 
 const Button = (props: ButtonProps) => {
-    const { text, buttonType, clickEvent, clickHandler } = props;
+    const { text, buttonType, clickEvent, disabled, clickHandler } = props;
 
     const onButtonClick = () => {
         clickHandler();
     };
 
     return (
-        <ButtonItem type="button" buttonType={buttonType} onClick={() => {
+        <ButtonItem type="button" disabled={disabled} buttonType={buttonType} onClick={() => {
             return clickEvent === true && onButtonClick()
         }}>
             {text}

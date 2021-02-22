@@ -1,6 +1,12 @@
-import React from "react";
+import React, { useEffect, useReducer } from "react";
 import styled from "styled-components";
 import { Button, Modal } from "../index";
+import { reducer, initialState } from "./store";
+import { validateEmail } from "../../helpers/validation";
+
+interface StyledProps {
+    type: string;
+};
 
 const Container = styled.div`
     background: rgba(0, 0, 0, 0.06);
@@ -55,18 +61,55 @@ const InputField = styled.input`
     border-right-color: #ddd;
 `;
 
+const Message = styled.span`
+    margin: 0.4rem 0;
+    color: ${(props: StyledProps) => props.type === "error" ? "red" : "#1D80BE"};
+    font-size: 13px;
+`;
+
 const SubscribeCard = () => {
+    const [state, dispatch] = useReducer(reducer, initialState);
+    const { showModal, value, error, message, isValid } = state;
 
     const onClickHandler = () => {
-        console.log("click trigger");
+        setValue("showModal", !showModal);
+        showModal && dispatch({ type: "RESET" });
     };
+
+    const setValue = (field: string, value: string | boolean) => {
+        dispatch({
+            type: "SET_VALUE",
+            field: field,
+            value: value,
+        });
+    };
+
+    useEffect(() => {
+        if (value.length > 0) {
+            if (validateEmail(value)) {
+                setValue("isValid", true);
+                setValue("error", false);
+                setValue("message", "");
+            } else {
+                setValue("isValid", false);
+                setValue("error", true);
+                setValue("message", "Enter a valid email address");
+            }
+        }
+    }, [value]);
 
     return (
         <Container>
-            {/* <Modal title="Subscribe by Email" clickHandler={onClickHandler}>
+            {showModal && <Modal title="Subscribe by Email" clickHandler={onClickHandler} isValid={isValid}>
                 <ModalText> We promise not to spam or share your email.</ModalText>
-                <InputField type="text" placeholder="Enter email address" />
-            </Modal> */}
+                <InputField
+                    type="text"
+                    placeholder="Enter email address"
+                    value={value}
+                    onChange={(e) => setValue("value", e.target.value)} />
+                {error && <Message type="error">{message}</Message>}
+                {isValid && <Message type="success">Note: Email is not being sent to any servers</Message>}
+            </Modal>}
             <Wrapper>
                 <Header>
                     <Title>Subscribe to email updates</Title>

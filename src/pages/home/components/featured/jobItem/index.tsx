@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { CustomLink } from "../../../../../components";
+import { FeaturedJobItem } from "../../../../../types/featuredJobs.types";
 
 const Wrapper = styled.div`
     border-bottom: 1px solid #ddd;
@@ -39,20 +40,26 @@ const Time = styled.div`
     color: #999;
 `;
 
-const JobItem = () => {
+interface JobItemProps {
+    data: FeaturedJobItem;
+}
+
+const JobItem = (props: JobItemProps) => {
+    const { data } = props;
+
     return (
         <Wrapper>
             <TitleContainer>
                 <CustomLink
                     bold={1}
                     color="#1d80be"
-                    title="Java Software Developer (m/w/d)"
-                    url="https://jobs.github.com/positions/ad2f2bf9-ac3a-45b9-9e81-6b63728bac48" />
-                <Company>Taxfix - <JobType> Full time</JobType></Company>
+                    title={data.title}
+                    url={`/positions/${data.id}`} />
+                <Company>{data.company} - <JobType> {data.type}</JobType></Company>
             </TitleContainer>
             <LocationContainer>
-                <Location>Berlin</Location>
-                <Time>about 16 hours ago</Time>
+                <Location>{data.location}</Location>
+                <Time>{data.created_at}</Time>
             </LocationContainer>
         </Wrapper>
     );

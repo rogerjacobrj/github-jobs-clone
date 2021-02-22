@@ -10,3 +10,9 @@ export const ContentContainer = styled.div`
     background: #FFFFFF;
     padding: 1rem;
 `;
+
+export const Loading = styled.div`
+    text-align: center;
+    padding: 2rem 0;
+    font-size: 14px;
+`;

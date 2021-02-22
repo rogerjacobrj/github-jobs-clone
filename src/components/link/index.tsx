@@ -12,7 +12,7 @@ interface LinkProps {
 
 const CustomizedLink = styled(Link)`
     font-size: ${(props: LinkProps) => props.fontSize ? props.fontSize : "13px"};
-    font-weight: 500;
+    font-weight: 400;
 
     ${(props: LinkProps) => props.bold === 1 && css`
         font-weight: bold;

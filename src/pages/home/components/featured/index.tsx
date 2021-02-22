@@ -4,7 +4,8 @@ import JobItem from "./jobItem";
 import { CustomLink, Anchor, CompanyCard } from "../../../../components";
 import { languages, locations } from "./data";
 import ListSection from "./listSection";
-import { GradientWrapper, ContentContainer } from "../../../../styles";
+import { GradientWrapper, ContentContainer, Loading } from "../../../../styles";
+import { Company, FeaturedJobItem } from "../../../../types/featuredJobs.types";
 
 const Title = styled.h1`
     padding-bottom: 15px;
@@ -50,7 +51,15 @@ const HotSearchLocations = styled.div``;
 
 const FollowButtonContainer = styled.div``;
 
-const FeaturedSection = () => {
+interface FeaturedSectionProps {
+    jobs: FeaturedJobItem[];
+    featured: Company;
+    isLoading: boolean;
+}
+
+const FeaturedSection = (props: FeaturedSectionProps) => {
+    const { jobs, featured, isLoading } = props;
+
     return (
         <GradientWrapper>
             <ContentContainer>
@@ -58,11 +67,12 @@ const FeaturedSection = () => {
                 <SectionWrapper>
                     <LeftSection>
                         <JobListSection>
-                            <JobItem />
-                            <JobItem />
-                            <LinkContainer>
+                            {jobs && jobs.length > 0 ? jobs.map((job, idx) => {
+                                return <JobItem data={job} key={`job-${idx}`} />
+                            }) : <Loading>Loading...</Loading>}
+                            {jobs.length > 0 && <LinkContainer>
                                 <CustomLink color="#1D80BE" title="More Awesome Jobs →" url="/positions" bold={1} />
-                            </LinkContainer>
+                            </LinkContainer>}
                         </JobListSection>
 
                         <HotSearchSection>
@@ -98,7 +108,7 @@ const FeaturedSection = () => {
                                 text="Follow GitHub Jobs on Twitter" />
                         </FollowButtonContainer>
 
-                        <CompanyCard />
+                        <CompanyCard company={featured} isLoading={isLoading} />
                     </FollowSection>
                 </SectionWrapper>
             </ContentContainer>

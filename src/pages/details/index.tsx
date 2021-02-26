@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import {
     Header, Footer, CustomLink, CompanyCard,
-    Preview, SubscribeCard, ApplyCard
+    Preview, ApplyCard
 } from "../../components";
 import { GradientWrapper, ContentContainer } from "../../styles";
+import { Store } from "../../reducers";
+import { fetchJobDetails } from "../../actions/details.action";
+import { isLoaded } from "../../helpers/store";
+import { Company } from "../../types/jobs.types";
 
 const Section = styled.div`
     display: flex;
@@ -65,10 +72,31 @@ const AboutCompany = styled.div`
     width: 35%;
 `;
 
-
-
-
 const DetailsPage = () => {
+    const dispatch = useDispatch();
+    const detailState = useSelector((state: Store) => state.details);
+    const [company, setCompanyDetails] = useState<Company>();
+    const { data, status } = detailState;
+    const { id } = useParams<{ id: string }>();
+
+    useEffect(() => {
+        dispatch(fetchJobDetails(id));
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+
+    useEffect(() => {
+        if (data) {
+            let company = {
+                logo: data.company_logo,
+                link: data.company_url,
+                name: data.company
+            };
+
+            setCompanyDetails(company);
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [isLoaded(status)]);
 
     return (
         <Section>
@@ -80,22 +108,21 @@ const DetailsPage = () => {
                             <CustomLink color="#1D80BE" title="← See all positions" url="/" bold={1} />
                         </BackButtonContainer>
 
-                        <GradientWrapper>
-                            <ContentContainer>
+                        <GradientWrapper page="details">
+                            <ContentContainer page="details">
                                 <ContentHeader>
-                                    <Location>Full Time / Berlin</Location>
-                                    <Title>Senior Frontend Engineer*</Title>
+                                    <Location>{data.type} / {data.location}</Location>
+                                    <Title>{data.title}</Title>
                                 </ContentHeader>
 
                                 <MainContainer>
-                                    <LeftSection>
-                                        <Preview content="" />
+                                    <LeftSection className="detailSection">
+                                        <Preview content={data.description} />
                                     </LeftSection>
 
                                     <AboutCompany>
-                                        {/* <CompanyCard /> */}
-                                        <ApplyCard />
-                                        <SubscribeCard />
+                                        <CompanyCard type="details" company={company} />
+                                        <ApplyCard data={data.how_to_apply} />
                                     </AboutCompany>
                                 </MainContainer>
                             </ContentContainer>

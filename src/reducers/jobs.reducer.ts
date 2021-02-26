@@ -1,7 +1,7 @@
 
 import { ActionTypes } from "../actions/types";
 import { JobStore, FetchFeaturedJobActions } from "../types/jobs.types";
-import { dateToTime, setFeaturedCompany, getRandomJobs } from "../helpers/store";
+import { dateToTime, setFeaturedCompany } from "../helpers/store";
 
 const jobStore = {
     status: ActionTypes.NOT_LOADED,
@@ -45,7 +45,8 @@ export const jobs = (
             }
 
             if (action.pageType === "home") {
-                data = getRandomJobs(action.data);
+                // data = getRandomJobs(action.data);
+                data = action.data
             } else {
                 data = data.concat(action.data);
             }

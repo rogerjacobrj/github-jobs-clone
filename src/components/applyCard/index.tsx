@@ -26,7 +26,13 @@ const Title = styled.div`
     font-weight: bold;
 `;
 
-const ApplyCard = () => {
+interface ApplyCardProps {
+    data: string;
+}
+
+const ApplyCard = (props: ApplyCardProps) => {
+    const { data } = props;
+
     return (
         <Wrapper>
             <Container>
@@ -34,7 +40,7 @@ const ApplyCard = () => {
                     <Title>How to apply</Title>
                 </Header>
                 <div className="applyPreview">
-                    <Preview content="<p><a href=\'https://grnh.se/a8b10af52us\'>https://grnh.se/a8b10af52us</a></p>\n" />
+                    <Preview content={data} />
                 </div>
             </Container>
         </Wrapper>

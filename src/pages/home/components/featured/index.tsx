@@ -5,13 +5,6 @@ import { languages, locations } from "./data";
 import { GradientWrapper, ContentContainer, Loading, SectionTitle } from "../../../../styles";
 import { Company, FeaturedJobItem } from "../../../../types/jobs.types";
 
-const Title = styled.h1`
-    padding-bottom: 15px;
-    font-size: 22px;
-    color: #294455;
-    border-bottom: 1px solid #ddd;
-`;
-
 const SectionWrapper = styled.div`
     display: flex;
 `;
@@ -106,7 +99,7 @@ const FeaturedSection = (props: FeaturedSectionProps) => {
                                 text="Follow GitHub Jobs on Twitter" />
                         </FollowButtonContainer>
 
-                        <CompanyCard company={featured} isLoading={isLoading} />
+                        <CompanyCard type="featured" company={featured} isLoading={isLoading} />
                     </FollowSection>
                 </SectionWrapper>
             </ContentContainer>

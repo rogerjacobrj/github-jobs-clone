@@ -1,14 +1,36 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
+
+interface GradientProps {
+    readonly page?: string;
+}
+
+interface ContentContainerProps {
+    readonly page?: string;
+}
 
 export const GradientWrapper = styled.div`
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.06), #FAFAFA);
+    ${(props: GradientProps) => props.page === "details" && css`
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.06),
+            #FAFAFA 25%
+        );
+    `}
     padding: 4px;
     margin-top: 0.86rem;
 `;
 
 export const ContentContainer = styled.div`
-    background: #FFFFFF;
     padding: 1rem;
+    background: #FFFFFF;
+    ${(props: ContentContainerProps) => props.page === "details" && css`
+        background: linear-gradient(
+            to bottom,
+            #FFFFFF,
+            #FAFAFA 25%
+        );
+    `}
 `;
 
 export const Loading = styled.div`

@@ -5,7 +5,7 @@
 html,
 body {
   height: 100%;
-
+  background: #FAFAFA !important;
 }
 
 body {
@@ -33,4 +33,16 @@ body {
 
 .applyPreview .ql-editor {
   padding: 12px 8px;
+}
+
+.detailSection .ql-editor h1 {
+  font-size: 22px!important;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.detailSection .ql-editor h2 {
+  font-size: 16px!important;
+  color: #000;
+  font-weight: bold;
 }

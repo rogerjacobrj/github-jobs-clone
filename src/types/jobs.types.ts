@@ -44,9 +44,10 @@ export interface FeaturedJobItem {
 
 // Company
 export interface Company {
-    name: string;
+    name?: string;
     logo: string;
-    jobCount: number;
+    jobCount?: number;
+    link?: string;
 }
 
 // Reducer state

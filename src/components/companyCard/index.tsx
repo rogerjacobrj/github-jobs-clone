@@ -64,35 +64,44 @@ const FeaturedJobCount = styled.div`
 `;
 
 interface CompanyProps {
+    type: string;
     company?: Company;
     isLoading?: boolean;
 }
 
 const CompanyCard = (props: CompanyProps) => {
-    const { company, isLoading } = props;
+    const { type, company, isLoading } = props;
 
     return (
         <CompanyContainer>
             <CompanyWrapper>
                 <CompanyHeader>
-                    <CompanyTitle>Featured Company</CompanyTitle>
+                    <CompanyTitle>{type === "details" ? company && company!.name : "Featured Company"}</CompanyTitle>
                     {/* <CompanyJobCount>
                         <CustomLink color="#1D80BE" title="2 other jobs" url="/" bold={0} fontSize="11" hoverdecoration={0} />
                     </CompanyJobCount> */}
                 </CompanyHeader>
                 {isLoading ? <Loading>Loading...</Loading> :
                     <>
-                        <CompanyLogoContainer>
+                        {company && company.logo && <CompanyLogoContainer>
                             <CompanyLogo src={company?.logo}></CompanyLogo>
-                        </CompanyLogoContainer>
+                        </CompanyLogoContainer>}
                         <FeaturedJobCount>
-                            <CustomLink
-                                color="#1D80BE"
-                                title={`${company!.jobCount} ${company!.jobCount === 1 ? "Job" : "Jobs"} at ${company!.name.slice(0, 26)} ${company!.name.length > 26 ? "..." : ""}`}
-                                url="/"
-                                bold={0}
-                                underline={1}
-                                hoverdecoration={1} />
+                            {type === "details" ?
+                                <CustomLink
+                                    color="#1D80BE"
+                                    title={company && company!.link}
+                                    url="/"
+                                    bold={0}
+                                    underline={1}
+                                    hoverdecoration={1} />
+                                : <CustomLink
+                                    color="#1D80BE"
+                                    title={`${company!.jobCount} ${company!.jobCount === 1 ? "Job" : "Jobs"} at ${company!.name!.slice(0, 26)} ${company!.name!.length > 26 ? "..." : ""}`}
+                                    url="/"
+                                    bold={0}
+                                    underline={1}
+                                    hoverdecoration={1} />}
                         </FeaturedJobCount>
                     </>}
             </CompanyWrapper>

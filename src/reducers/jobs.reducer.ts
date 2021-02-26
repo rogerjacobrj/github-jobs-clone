@@ -1,7 +1,7 @@
 
 import { ActionTypes } from "../actions/types";
 import { JobStore, FetchFeaturedJobActions } from "../types/jobs.types";
-import { dateToTime, setFeaturedCompany } from "../helpers/store";
+import { dateToTime, setFeaturedCompany, getRandomJobs } from "../helpers/store";
 
 const jobStore = {
     status: ActionTypes.NOT_LOADED,
@@ -34,8 +34,15 @@ export const jobs = (
             let data = state.data;
 
             for (let i = 0; i < action.data.length; i++) {
-                let day = dateToTime(action.data[i].created_at);
-                action.data[i].created_at = `${day} ${day === 1 ? "day" : "days"} ago`;
+                let day = dateToTime(action.data[i].created_at).days;
+                let mins = dateToTime(action.data[i].created_at).mins;
+                let hours = mins / 60;
+
+                if (hours >= 24) {
+                    action.data[i].created_at = `${day} ${day === 1 ? "day" : "days"} ago`;
+                } else {
+                    action.data[i].created_at = `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+                }
             }
 
             let company = setFeaturedCompany(action.data);
@@ -45,8 +52,7 @@ export const jobs = (
             }
 
             if (action.pageType === "home") {
-                // data = getRandomJobs(action.data);
-                data = action.data
+                data = getRandomJobs(action.data);
             } else {
                 data = data.concat(action.data);
             }

@@ -13,27 +13,7 @@ const HomePage = () => {
     const jobState = useSelector((state: Store) => state.jobs);
 
     let { data, company, status } = jobState;
-    const itemCount = data.length;
 
-    const getRandomIndex = () => {
-        return Math.floor(Math.random() * 10);
-    };
-
-    let startPosition = getRandomIndex();
-    let endPosition = getRandomIndex();
-
-    if (startPosition > endPosition) {
-        startPosition = endPosition - 2;
-    }
-
-    if (itemCount > 0) {
-        if (startPosition < itemCount && endPosition < itemCount
-            && startPosition < endPosition) {
-            data = data.slice(startPosition, endPosition).slice(0, 2);
-        } else {
-            data = data.slice(0, 2);
-        }
-    }
 
     useEffect(() => {
         dispatch(fetchJobs(1, "home"));

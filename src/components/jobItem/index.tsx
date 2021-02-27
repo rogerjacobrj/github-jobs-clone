@@ -12,6 +12,10 @@ const Wrapper = styled.div`
     &:hover {
         background-color: #FAFAFA;
     }
+
+    &:last-child {
+        border-bottom: none;
+    }
 `;
 
 const TitleContainer = styled.div`

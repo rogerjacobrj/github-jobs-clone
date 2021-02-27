@@ -10,8 +10,9 @@ import {
 import { GradientWrapper, ContentContainer } from "../../styles";
 import { Store } from "../../reducers";
 import { fetchJobDetails } from "../../actions/details.action";
-import { isLoaded } from "../../helpers/store";
+import { isLoaded, isLoading } from "../../helpers/store";
 import { Company } from "../../types/jobs.types";
+import DetailsLoader from "./loader";
 
 const Section = styled.div`
     display: flex;
@@ -108,25 +109,26 @@ const DetailsPage = () => {
                             <CustomLink color="#1D80BE" title="← See all positions" url="/" bold={1} />
                         </BackButtonContainer>
 
-                        <GradientWrapper page="details">
-                            <ContentContainer page="details">
-                                <ContentHeader>
-                                    <Location>{data.type} / {data.location}</Location>
-                                    <Title>{data.title}</Title>
-                                </ContentHeader>
+                        {isLoading(status) ? <DetailsLoader />
+                            : <GradientWrapper page="details">
+                                <ContentContainer page="details">
+                                    <ContentHeader>
+                                        <Location>{data.type} / {data.location}</Location>
+                                        <Title>{data.title}</Title>
+                                    </ContentHeader>
 
-                                <MainContainer>
-                                    <LeftSection className="detailSection">
-                                        <Preview content={data.description} />
-                                    </LeftSection>
+                                    <MainContainer>
+                                        <LeftSection className="detailSection">
+                                            <Preview content={data.description} />
+                                        </LeftSection>
 
-                                    <AboutCompany>
-                                        <CompanyCard type="details" company={company} />
-                                        <ApplyCard data={data.how_to_apply} />
-                                    </AboutCompany>
-                                </MainContainer>
-                            </ContentContainer>
-                        </GradientWrapper>
+                                        <AboutCompany>
+                                            <CompanyCard type="details" company={company} isLoading={isLoading(status)} />
+                                            <ApplyCard data={data.how_to_apply} />
+                                        </AboutCompany>
+                                    </MainContainer>
+                                </ContentContainer>
+                            </GradientWrapper>}
                     </Container>
                 </Wrapper>
             </MainSection>

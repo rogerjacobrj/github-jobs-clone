@@ -27,7 +27,8 @@ body {
   border: none !important;
 }
 
-.ql-editor p, .ql-editor ul {
+.ql-editor p,
+.ql-editor ul {
   margin-bottom: 1rem !important;
 }
 
@@ -36,13 +37,21 @@ body {
 }
 
 .detailSection .ql-editor h1 {
-  font-size: 22px!important;
+  font-size: 22px !important;
   font-weight: bold;
   margin-bottom: 0.5rem;
 }
 
 .detailSection .ql-editor h2 {
-  font-size: 16px!important;
+  font-size: 16px !important;
   color: #000;
   font-weight: bold;
+}
+
+.svgIcon {
+  fill: #bebebe;
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  width: 18px;
 }

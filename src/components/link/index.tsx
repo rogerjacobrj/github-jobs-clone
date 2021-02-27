@@ -2,43 +2,54 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled, { css } from "styled-components";
 
-interface LinkProps {
+interface LinkStyleProps {
     color?: string;
     underline?: number;
     bold?: number;
     fontSize?: string;
-    hoverdecoration?: boolean;
+    hoverdecoration?: number;
 }
 
 const CustomizedLink = styled(Link)`
-    font-size: ${(props: LinkProps) => props.fontSize ? props.fontSize : "13px"};
+    font-size: ${(props: LinkStyleProps) => props.fontSize ? props.fontSize : "13px"};
     font-weight: 400;
 
-    ${(props: LinkProps) => props.bold === 1 && css`
+    ${(props: LinkStyleProps) => props.bold === 1 && css`
         font-weight: bold;
         font-size: 14px;
     `}
 
-    ${(props: LinkProps) => props.color && css`
-        color: ${(props: LinkProps) => props.color};
+    ${(props: LinkStyleProps) => props.color && css`
+        color: ${(props: LinkStyleProps) => props.color};
 
         &:hover {
-            color: ${(props: LinkProps) => props.color};
+            color: ${(props: LinkStyleProps) => props.color};
         }
     `}
 
-    ${(props: LinkProps) => props.underline === 1 && css`
+    ${(props: LinkStyleProps) => props.underline === 1 && css`
         text-decoration: underline;
     `} 
     
-    ${(props: LinkProps) => !props.hoverdecoration && css`
+    ${(props: LinkStyleProps) => props.hoverdecoration === 0 && css`
         &:hover {
             text-decoration: none;
         }
     `}
 `;
 
-const CustomLink = (props: any) => {
+interface LinkProps {
+    color?: string;
+    title?: string;
+    url: string;
+    underline?: number;
+    bold?: number;
+    fontSize?: string;
+    hoverdecoration?: number;
+    children?: any;
+}
+
+const CustomLink = (props: LinkProps) => {
     const { color, title, url, underline, bold, fontSize, hoverdecoration, children } = props;
 
     return <CustomizedLink

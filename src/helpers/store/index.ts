@@ -142,3 +142,19 @@ export const getRandomJobs = (jobs: JobItem[]) => {
 
     return jobs;
 }
+
+export const modifyCreatedDate = (jobs: JobItem[]) => {
+    for (let i = 0; i < jobs.length; i++) {
+        let day = dateToTime(jobs[i].created_at).days;
+        let mins = dateToTime(jobs[i].created_at).mins;
+        let hours = mins / 60;
+
+        if (hours >= 24) {
+            jobs[i].created_at = `${day} ${day === 1 ? "day" : "days"} ago`;
+        } else {
+            jobs[i].created_at = `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+        }
+    }
+
+    return jobs;
+}

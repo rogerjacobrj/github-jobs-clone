@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { CustomLink } from "../index";
 import { Company } from "../../types/jobs.types";
-import { Loading } from "../../styles";
+import { CompanyCardLoader } from "../../components";
 
 const CompanyContainer = styled.div`
     background: rgba(0, 0, 0, 0.06);
@@ -27,23 +27,6 @@ const CompanyTitle = styled.div`
     font-size: 12px;
     font-weight: bold;
 `;
-
-// const CompanyJobCount = styled.div`
-//     padding: 2px 5px;
-//     font-size: 11px;
-//     font-weight: bold;
-//     text-decoration: none;
-//     background: #eee;
-//     border: 1px solid #eee;
-//     border-top: 1px solid #e5e5e5;
-//     -webkit-border-radius: 3px;
-//     -moz-border-radius: 3px;
-//     border-radius: 3px;
-
-//     &:hover {
-//         background-color: #FFFFFF;
-//     }
-// `;
 
 const CompanyLogoContainer = styled.div`
     padding: 8px;
@@ -77,11 +60,8 @@ const CompanyCard = (props: CompanyProps) => {
             <CompanyWrapper>
                 <CompanyHeader>
                     <CompanyTitle>{type === "details" ? company && company!.name : "Featured Company"}</CompanyTitle>
-                    {/* <CompanyJobCount>
-                        <CustomLink color="#1D80BE" title="2 other jobs" url="/" bold={0} fontSize="11" hoverdecoration={0} />
-                    </CompanyJobCount> */}
                 </CompanyHeader>
-                {isLoading ? <Loading>Loading...</Loading> :
+                {isLoading ? <CompanyCardLoader /> :
                     <>
                         {company && company.logo && <CompanyLogoContainer>
                             <CompanyLogo src={company?.logo}></CompanyLogo>

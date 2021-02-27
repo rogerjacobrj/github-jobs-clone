@@ -39,7 +39,17 @@ const Icon = styled.img`
     width: 25px;
 `;
 
-const Anchor = (props: any) => {
+interface AnchorProps extends React.AnchorHTMLAttributes<HTMLAnchorElement> {
+    icon?: string;
+    iconAlt?: string;
+    url?: string;
+    showIcon?: boolean;
+    text?: string;
+    color: string;
+    applyStyle?: boolean;
+}
+
+const Anchor = (props: AnchorProps) => {
     const { icon, iconAlt, url, showIcon, text, color, applyStyle } = props;
 
     return (

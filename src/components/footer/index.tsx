@@ -53,6 +53,7 @@ const Footer = () => {
                 url="https://github.com"
                 icon="./github.png"
                 showIcon
+                color=""
                 applyStyle={false} />
             <RightsContainer>
                 © {year} GitHub Inc. All rights reserved.

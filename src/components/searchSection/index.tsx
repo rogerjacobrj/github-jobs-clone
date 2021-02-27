@@ -28,9 +28,19 @@ const CheckboxContainer = styled.div`
 
 const ButtonContainer = styled.div``;
 
-const SearchSection = () => {
+interface SearchSectionProps {
+    description: string;
+    location: string;
+    roleType: boolean;
+    setDescription: (value: string) => void;
+    setLocation: (value: string) => void;
+    setRoleType: (value: boolean) => void;
+    clickHandler: () => void;
+}
 
-    const clickHandler = () => { }
+const SearchSection = (props: SearchSectionProps) => {
+
+    const { description, location, roleType, setDescription, setLocation, setRoleType, clickHandler } = props;
 
     return (
         <Section>
@@ -39,21 +49,29 @@ const SearchSection = () => {
                     <Wrapper>
                         <InputContainer>
                             <Input
+                                showLabel
                                 label="Job description"
                                 placeholder="Filter by title, benefits, companies, expertise"
+                                updatedValue={setDescription}
+                                value={description}
+                                icon="./description.svg"
                             />
                         </InputContainer>
                         <InputContainer>
                             <Input
+                                showLabel
                                 label="Location"
                                 placeholder="Filter by city, state, zip code or country"
+                                updatedValue={setLocation}
+                                value={location}
+                                icon="./location.svg"
                             />
                         </InputContainer>
                         <CheckboxContainer>
-                            <input type="checkbox" /> Full time only
+                            <input type="checkbox" checked={roleType} onChange={(e) => setRoleType(e.target.checked)} /> Full time only
                     </CheckboxContainer>
                         <ButtonContainer>
-                            <Button text="Search" buttonType="search" clickHandler={clickHandler} />
+                            <Button text="Search" buttonType="search" clickEvent={true} clickHandler={clickHandler} />
                         </ButtonContainer>
                     </Wrapper>
                 </Row>

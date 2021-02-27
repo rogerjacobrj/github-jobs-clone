@@ -57,10 +57,16 @@ const ClickButton = styled.div`
     }
 `;
 
+interface ModalProps {
+  title: string;
+  children: any;
+  isValid: boolean;
+  clickHandler: () => void;
+}
 
-const Modal = (props: any) => {
+const Modal = (props: ModalProps) => {
 
-  const { clickHandler, isValid } = props;
+  const { clickHandler, isValid, children, title } = props;
 
   // Disable the body scroll
   useEffect(() => {
@@ -76,11 +82,11 @@ const Modal = (props: any) => {
       <Backdrop />
       <Wrapper>
         <Header>
-          <Title>{props.title}</Title>
+          <Title>{title}</Title>
           <ClickButton onClick={() => clickHandler()}>X</ClickButton>
         </Header>
-        {props.children && (
-          <Content>{props.children}</Content>
+        {children && (
+          <Content>{children}</Content>
         )}
         <Footer>
           <Button text="Subscribe" disabled={!isValid}

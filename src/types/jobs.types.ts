@@ -1,7 +1,15 @@
 import { ActionTypes } from "../actions/types";
 
+export interface JobFilters {
+    description?: string;
+    location?: string;
+    roleType?: boolean;
+}
+
+// Fetch featured job/list
 export interface InitFetchJobs {
     type: ActionTypes.FETCH_JOBS_LOADING;
+    page: number;
 }
 
 export interface FetchJobs {
@@ -14,6 +22,7 @@ export interface FetchJobsSuccess {
     type: ActionTypes.FETCH_JOBS_SUCCESS;
     data: FeaturedJobItem[];
     pageType: string;
+    page: number;
 }
 
 export interface FetchJobsError {
@@ -21,11 +30,44 @@ export interface FetchJobsError {
     message: string;
 }
 
+export interface ClearJobs {
+    type: ActionTypes.CLEAR_JOBS;
+}
+
+// Fetch jobs by filters
+export interface InitFetchJobsByFilter {
+    type: ActionTypes.FETCH_JOBS_BY_FILTER_LOADING;
+}
+
+export interface FetchJobsByFilter {
+    type: ActionTypes.FETCH_JOBS_BY_FILTER;
+    pageType: string;
+    page: number;
+    filters: JobFilters;
+}
+
+export interface FetchJobsByFilterSuccess {
+    type: ActionTypes.FETCH_JOBS_BY_FILTER_SUCCESS;
+    data: FeaturedJobItem[];
+    pageType: string;
+    page: number;
+}
+
+export interface FetchJobsByFilterError {
+    type: ActionTypes.FETCH_JOBS_BY_FILTER_ERROR;
+    message: string;
+}
+
 export type FetchFeaturedJobActions =
     | InitFetchJobs
     | FetchJobs
     | FetchJobsSuccess
-    | FetchJobsError;
+    | FetchJobsError
+    | ClearJobs
+    | InitFetchJobsByFilter
+    | FetchJobsByFilter
+    | FetchJobsByFilterSuccess
+    | FetchJobsByFilterError;
 
 // Job item
 export interface FeaturedJobItem {
@@ -58,4 +100,9 @@ export interface JobStore {
     data: FeaturedJobItem[];
     company: Company;
     isEnd: boolean;
+    loadMore: {
+        status: string;
+        error: boolean;
+        message: string;
+    }
 }

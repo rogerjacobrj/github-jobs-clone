@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
+import SVG from 'react-inlinesvg';
 
 const Wrapper = styled.div``;
 
@@ -11,6 +12,7 @@ const Label = styled.div`
 const InputContainer = styled.div`
     background: rgba(0, 0, 0, 0.06);
     padding: 2px;
+    position: relative;
 `;
 
 const InputField = styled.input`
@@ -18,19 +20,29 @@ const InputField = styled.input`
     padding: 7px 5px;
     width: 100%;
     font-size: 12px;
+    padding-left: 30px;
 `;
 
-const Input = (props: any) => {
-    const [value, setValue] = useState<string | number>();
+interface InputProps {
+    label: string;
+    placeholder: string;
+    showLabel: boolean;
+    updatedValue: (value: string) => void;
+    value: string;
+    icon: string;
+}
 
-    const { label, placeholder } = props;
+const Input = (props: InputProps) => {
+    const { label, placeholder, showLabel, updatedValue, value, icon } = props;
 
-    const onChangeHandler = (value: string | number) => {
-        setValue(value);
-    }
+    const onChangeHandler = (value: string) => {
+        updatedValue(value);
+    };
+
     return (<Wrapper>
-        <Label>{label}</Label>
+        {showLabel && <Label>{label}</Label>}
         <InputContainer>
+            <SVG src={icon} className="svgIcon" />
             <InputField
                 value={value}
                 placeholder={placeholder}

@@ -1,9 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { CustomLink, Anchor, CompanyCard, JobItem, ListSection } from "../../../../components";
+import {
+    CustomLink, Anchor, CompanyCard, JobItem,
+    ListSection, JobItemLoader, TextLoader
+} from "../../../../components";
 import { languages, locations } from "./data";
-import { GradientWrapper, ContentContainer, Loading, SectionTitle } from "../../../../styles";
+import { GradientWrapper, ContentContainer, SectionTitle } from "../../../../styles";
 import { Company, FeaturedJobItem } from "../../../../types/jobs.types";
+import { generateCount } from "../../../../helpers/index";
 
 const SectionWrapper = styled.div`
     display: flex;
@@ -46,7 +50,7 @@ interface FeaturedSectionProps {
     jobs: FeaturedJobItem[];
     featured: Company;
     isLoading: boolean;
-}
+};
 
 const FeaturedSection = (props: FeaturedSectionProps) => {
     const { jobs, featured, isLoading } = props;
@@ -54,13 +58,24 @@ const FeaturedSection = (props: FeaturedSectionProps) => {
     return (
         <GradientWrapper>
             <ContentContainer>
-                <SectionTitle>Featured Jobs</SectionTitle>
+                <SectionTitle>
+                    {isLoading ?
+                        <TextLoader
+                            x={0}
+                            y={2}
+                            rx={0}
+                            ry={0}
+                            viewBox="0 0 380 15"
+                            width={90}
+                            height={12}
+                        /> : "Featured Jobs"}
+                </SectionTitle>
                 <SectionWrapper>
                     <LeftSection>
                         <JobListSection>
                             {jobs && jobs.length > 0 ? jobs.map((job, idx) => {
                                 return <JobItem data={job} key={`job-${idx}`} />
-                            }) : <Loading>Loading...</Loading>}
+                            }) : generateCount(3).map(() => <JobItemLoader />)}
                             {jobs.length > 0 && <LinkContainer>
                                 <CustomLink color="#1D80BE" title="More Awesome Jobs →" url="/positions" bold={1} />
                             </LinkContainer>}
@@ -88,16 +103,27 @@ const FeaturedSection = (props: FeaturedSectionProps) => {
                     </LeftSection>
 
                     <FollowSection>
-                        <FollowButtonContainer>
-                            <Anchor
-                                showIcon
-                                applyStyle={true}
-                                icon="./twitter.png"
-                                color="#1D80BE"
-                                iconAlt="Follow on Twitter"
-                                url="https://twitter.com/GitHubJobs"
-                                text="Follow GitHub Jobs on Twitter" />
-                        </FollowButtonContainer>
+                        {isLoading ?
+                            <TextLoader
+                                x={0}
+                                y={9}
+                                rx={0}
+                                ry={0}
+                                viewBox="0 0 600 100"
+                                width={600}
+                                height={70}
+                            /> :
+                            <FollowButtonContainer>
+                                <Anchor
+                                    showIcon
+                                    applyStyle={true}
+                                    icon="./twitter.png"
+                                    color="#1D80BE"
+                                    iconAlt="Follow on Twitter"
+                                    url="https://twitter.com/GitHubJobs"
+                                    text="Follow GitHub Jobs on Twitter" />
+                            </FollowButtonContainer>
+                        }
 
                         <CompanyCard type="featured" company={featured} isLoading={isLoading} />
                     </FollowSection>

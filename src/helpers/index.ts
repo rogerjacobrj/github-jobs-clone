@@ -19,3 +19,7 @@ export const urlGenerator = (description: string, location: string, roleType: bo
 
     return newFilterUrl;
 };
+
+export const generateCount = (count: number) => {
+    return Array.from(Array(count).keys());
+};

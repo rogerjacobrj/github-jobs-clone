@@ -5,11 +5,14 @@ import { useDispatch } from "react-redux";
 import { useLocation, useHistory } from "react-router-dom";
 import { Store } from "../../reducers";
 import { fetchJobs, fetchJobsByFilter } from "../../actions/jobs.actions";
-import { Header, Footer, SearchSection, Anchor, SubscribeCard, JobItem, Button } from "../../components";
+import {
+    Header, Footer, SearchSection, Anchor, TextLoader,
+    SubscribeCard, JobItem, Button, JobItemLoader
+} from "../../components";
 import { isLoading } from "../../helpers/store";
-import { GradientWrapper, ContentContainer, Loading } from "../../styles";
+import { GradientWrapper, ContentContainer } from "../../styles";
 import { SectionWrapper, MainSection, FooterSection, SubWrapper, WidthContainer, SectionTitle } from "../../styles";
-import { urlGenerator } from "../../helpers";
+import { urlGenerator, generateCount } from "../../helpers";
 
 const LeftSectionWrapper = styled.div`
     display:flex;
@@ -140,13 +143,24 @@ const ListingPage = () => {
                             clickHandler={searchJobs} />
                         <GradientWrapper>
                             <ContentContainer>
-                                <SectionTitle>Showing {data.length} Jobs</SectionTitle>
+                                <SectionTitle>
+                                    {isLoading(status) ?
+                                        <TextLoader
+                                            x={0}
+                                            y={0}
+                                            rx={0}
+                                            ry={0}
+                                            viewBox="0 0 380 15"
+                                            width={90}
+                                            height={12}
+                                        /> : `Showing ${data.length} Jobs`}
+                                </SectionTitle>
                                 <LeftSectionWrapper>
                                     <LeftSection>
                                         <JobListSection>
                                             {data && data.length > 0 ? data.map((job, idx) => {
                                                 return <JobItem data={job} key={`job-${idx}`} />
-                                            }) : <Loading>Loading...</Loading>}
+                                            }) : generateCount(10).map(() => <JobItemLoader />)}
 
                                         </JobListSection>
                                         {!isEnd && <ButtonContainer>

@@ -12,9 +12,13 @@ import Modal from "./modal";
 import SearchSection from "./searchSection";
 import JobItem from "./jobItem";
 import ListSection from "./listSection";
+import JobItemLoader from "./loaders/jobItem";
+import CompanyCardLoader from "./loaders/company";
+import TextLoader from "./loaders/text";
 
 export {
     Header, Input, Button, Preview, SubscribeCard, Modal,
     CustomLink, Anchor, Footer, CompanyCard, ApplyCard,
-    SearchSection, JobItem, ListSection
+    SearchSection, JobItem, ListSection, JobItemLoader,
+    CompanyCardLoader, TextLoader
 }

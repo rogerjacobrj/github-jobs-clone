@@ -21,15 +21,14 @@ const InputField = styled.input`
 `;
 
 const Input = (props: any) => {
-    const [value, setValue] = useState<string | number>();
-
-    const { label, placeholder } = props;
+    const { label, placeholder, showLabel, updatedValue, value } = props;
 
     const onChangeHandler = (value: string | number) => {
-        setValue(value);
-    }
+        updatedValue(value);
+    };
+
     return (<Wrapper>
-        <Label>{label}</Label>
+        {showLabel && <Label>{label}</Label>}
         <InputContainer>
             <InputField
                 value={value}

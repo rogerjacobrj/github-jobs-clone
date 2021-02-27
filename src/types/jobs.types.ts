@@ -1,5 +1,12 @@
 import { ActionTypes } from "../actions/types";
 
+export interface JobFilters {
+    description?: string;
+    location?: string;
+    roleType?: boolean;
+}
+
+// Fetch featured job/list
 export interface InitFetchJobs {
     type: ActionTypes.FETCH_JOBS_LOADING;
 }
@@ -22,11 +29,39 @@ export interface FetchJobsError {
     message: string;
 }
 
+// Fetch jobs by filters
+export interface InitFetchJobsByFilter {
+    type: ActionTypes.FETCH_JOBS_BY_FILTER_LOADING;
+}
+
+export interface FetchJobsByFilter {
+    type: ActionTypes.FETCH_JOBS_BY_FILTER;
+    pageType: string;
+    page: number;
+    filters: JobFilters;
+}
+
+export interface FetchJobsByFilterSuccess {
+    type: ActionTypes.FETCH_JOBS_BY_FILTER_SUCCESS;
+    data: FeaturedJobItem[];
+    pageType: string;
+    page: number;
+}
+
+export interface FetchJobsByFilterError {
+    type: ActionTypes.FETCH_JOBS_BY_FILTER_ERROR;
+    message: string;
+}
+
 export type FetchFeaturedJobActions =
     | InitFetchJobs
     | FetchJobs
     | FetchJobsSuccess
-    | FetchJobsError;
+    | FetchJobsError
+    | InitFetchJobsByFilter
+    | FetchJobsByFilter
+    | FetchJobsByFilterSuccess
+    | FetchJobsByFilterError;
 
 // Job item
 export interface FeaturedJobItem {

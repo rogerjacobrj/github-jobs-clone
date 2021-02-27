@@ -77,6 +77,58 @@ export const jobs = (
             };
         }
 
+        case ActionTypes.FETCH_JOBS_BY_FILTER_LOADING: {
+            return {
+                ...state,
+                status: ActionTypes.IS_LOADING,
+                error: false,
+            };
+        }
+
+        case ActionTypes.FETCH_JOBS_BY_FILTER_SUCCESS: {
+            let isEnd = false;
+            let data = state.data;
+
+            for (let i = 0; i < action.data.length; i++) {
+                let day = dateToTime(action.data[i].created_at).days;
+                let mins = dateToTime(action.data[i].created_at).mins;
+                let hours = mins / 60;
+
+                if (hours >= 24) {
+                    action.data[i].created_at = `${day} ${day === 1 ? "day" : "days"} ago`;
+                } else {
+                    action.data[i].created_at = `${hours} ${hours === 1 ? "hour" : "hours"} ago`;
+                }
+            }
+
+            if (action.data.length < 50) {
+                isEnd = true;
+            }
+
+
+            if (action.page === 1) {
+                data = [];
+            }
+
+            data = data.concat(action.data);
+
+            return {
+                ...state,
+                status: ActionTypes.LOADED,
+                error: false,
+                data: data,
+                isEnd: isEnd
+            };
+        }
+
+        case ActionTypes.FETCH_JOBS_BY_FILTER_ERROR: {
+            return {
+                ...state,
+                status: ActionTypes.LOADING_FAILED,
+                error: true
+            };
+        }
+
         default: {
             return state;
         }

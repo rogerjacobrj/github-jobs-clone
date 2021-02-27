@@ -36,3 +36,41 @@ export const fetchFetchJobsFailure = (
         message: message,
     };
 };
+
+// Fetch jobs based on filters
+export const initFetchJobsByFilter = (): Types.InitFetchJobsByFilter => {
+    return {
+        type: ActionTypes.FETCH_JOBS_BY_FILTER_LOADING,
+    };
+};
+
+export const fetchJobsByFilter = (
+    pageType: string, page: number, filters: Types.JobFilters,
+): Types.FetchJobsByFilter => {
+    return {
+        type: ActionTypes.FETCH_JOBS_BY_FILTER,
+        pageType: pageType,
+        page: page,
+        filters: filters
+    };
+};
+
+export const fetchFetchJobsByFilterSuccess = (
+    data: Types.FeaturedJobItem[], pageType: string, page: number
+): Types.FetchJobsByFilterSuccess => {
+    return {
+        type: ActionTypes.FETCH_JOBS_BY_FILTER_SUCCESS,
+        data: data,
+        pageType: pageType,
+        page: page
+    };
+};
+
+export const fetchFetchJobsByFilterFailure = (
+    message: string
+): Types.FetchJobsByFilterError => {
+    return {
+        type: ActionTypes.FETCH_JOBS_BY_FILTER_ERROR,
+        message: message,
+    };
+};

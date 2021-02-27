@@ -38,6 +38,12 @@ export const fetchFetchJobsFailure = (
     };
 };
 
+export const clearJobs = (): Types.ClearJobs => {
+    return {
+        type: ActionTypes.CLEAR_JOBS,
+    };
+};
+
 // Fetch jobs based on filters
 export const initFetchJobsByFilter = (): Types.InitFetchJobsByFilter => {
     return {

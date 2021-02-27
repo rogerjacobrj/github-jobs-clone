@@ -30,6 +30,10 @@ export interface FetchJobsError {
     message: string;
 }
 
+export interface ClearJobs {
+    type: ActionTypes.CLEAR_JOBS;
+}
+
 // Fetch jobs by filters
 export interface InitFetchJobsByFilter {
     type: ActionTypes.FETCH_JOBS_BY_FILTER_LOADING;
@@ -59,6 +63,7 @@ export type FetchFeaturedJobActions =
     | FetchJobs
     | FetchJobsSuccess
     | FetchJobsError
+    | ClearJobs
     | InitFetchJobsByFilter
     | FetchJobsByFilter
     | FetchJobsByFilterSuccess

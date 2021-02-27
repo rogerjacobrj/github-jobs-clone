@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { useLocation, useHistory } from "react-router-dom";
 import { Store } from "../../reducers";
-import { fetchJobs, fetchJobsByFilter } from "../../actions/jobs.actions";
+import { fetchJobs, fetchJobsByFilter, clearJobs } from "../../actions/jobs.actions";
 import {
     Header, Footer, SearchSection, Anchor, TextLoader,
     SubscribeCard, JobItem, Button, JobItemLoader
@@ -48,6 +48,11 @@ const ListingPage = () => {
     let [page, setPage] = useState(1);
 
     let { data, status, isEnd, loadMore } = jobState;
+
+    useEffect(() => {
+        dispatch(clearJobs());
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [])
 
     const getQueryParams = () => {
         const query = new URLSearchParams(locationHook.search);
@@ -160,9 +165,11 @@ const ListingPage = () => {
                                         <JobListSection>
                                             {isLoading(status) ?
                                                 generateCount(10).map((item, idx) => <JobItemLoader key={`item-${idx}`} />) :
-                                                data && data.length > 0 && data.map((job, idx) => {
+                                                data && data.length > 0 ? data.map((job, idx) => {
                                                     return <JobItem data={job} key={`job-${idx}`} />
-                                                })}
+                                                }) :
+                                                    generateCount(10).map((item, idx) => <JobItemLoader key={`item-${idx}`} />)
+                                            }
 
                                         </JobListSection>
                                         {!isEnd && <ButtonContainer>

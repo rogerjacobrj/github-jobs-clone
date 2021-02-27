@@ -1,14 +1,6 @@
 import React from "react";
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
 import styled from "styled-components";
 import { CustomLink } from "../index";
-
-const CustomContainer = styled(Container)`
-    padding-left: 0;
-    padding-right: 0;
-`;
 
 const Wrapper = styled.div`
     padding: 0.6rem 1.5rem;
@@ -56,16 +48,6 @@ const Type = styled.div`
 
 const Jobs = styled.div``;
 
-// const CustomLink = styled(Link)`
-//     color: #FFFFFF;
-//     font-size: 0.85rem;
-//     font-weight: bold;
-
-//     &:hover {
-//         color: #FFFFFF;
-//     }
-// `;
-
 const NavList = styled.ul`
     display: flex;
     list-style-type: none;
@@ -85,54 +67,49 @@ const NavListItem = styled.li`
 
 const Header = () => {
     return (
-        <CustomContainer fluid>
-            <Row>
-                <Col>
-                    <Wrapper>
-                        <Section>
+        <Wrapper>
+            <Section>
+                <CustomLink
+                    color="#FFFFFF"
+                    bold={0}
+                    hoverdecoration={0}
+                    url="/">
+                    <Brand>
+                        <Logo>GitHub</Logo>
+                        <Type>&nbsp;Jobs</Type>
+                    </Brand>
+                </CustomLink>
+                <Jobs>
+                    <NavList>
+                        <NavListItem>
                             <CustomLink
                                 color="#FFFFFF"
                                 bold={0}
                                 hoverdecoration={0}
-                                url="/">
-                                <Brand>
-                                    <Logo>GitHub</Logo>
-                                    <Type>&nbsp;Jobs</Type>
-                                </Brand>
-                            </CustomLink>
-                            <Jobs>
-                                <NavList>
-                                    <NavListItem>
-                                        <CustomLink
-                                            color="#FFFFFF"
-                                            bold={0}
-                                            hoverdecoration={0}
-                                            title="All jobs"
-                                            url="/positions" />
-                                    </NavListItem>
-                                    <NavListItem>
-                                        <CustomLink
-                                            color="#FFFFFF"
-                                            bold={0}
-                                            hoverdecoration={0}
-                                            title="Post a job"
-                                            url="/" />
-                                    </NavListItem>
-                                    <NavListItem>
-                                        <CustomLink
-                                            color="#FFFFFF"
-                                            bold={0}
-                                            hoverdecoration={0}
-                                            title="How it works"
-                                            url="/" />
-                                    </NavListItem>
-                                </NavList>
-                            </Jobs>
-                        </Section>
-                    </Wrapper>
-                </Col>
-            </Row>
-        </CustomContainer>
+                                title="All jobs"
+                                url="/positions" />
+                        </NavListItem>
+                        <NavListItem>
+                            <CustomLink
+                                color="#FFFFFF"
+                                bold={0}
+                                hoverdecoration={0}
+                                title="Post a job"
+                                url="/" />
+                        </NavListItem>
+                        <NavListItem>
+                            <CustomLink
+                                color="#FFFFFF"
+                                bold={0}
+                                hoverdecoration={0}
+                                title="How it works"
+                                url="/" />
+                        </NavListItem>
+                    </NavList>
+                </Jobs>
+            </Section>
+        </Wrapper>
+
     );
 };
 

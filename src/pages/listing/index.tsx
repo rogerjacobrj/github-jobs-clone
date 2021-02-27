@@ -141,8 +141,8 @@ const ListingPage = () => {
                             roleType={roleType}
                             setRoleType={(value: boolean) => setRoleType(value)}
                             clickHandler={searchJobs} />
-                        <GradientWrapper>
-                            <ContentContainer>
+                        <GradientWrapper page="list">
+                            <ContentContainer page="list">
                                 <SectionTitle>
                                     {isLoading(status) ?
                                         <TextLoader
@@ -160,7 +160,7 @@ const ListingPage = () => {
                                         <JobListSection>
                                             {data && data.length > 0 ? data.map((job, idx) => {
                                                 return <JobItem data={job} key={`job-${idx}`} />
-                                            }) : generateCount(10).map(() => <JobItemLoader />)}
+                                            }) : generateCount(10).map((item, idx) => <JobItemLoader key={`item-${idx}`} />)}
 
                                         </JobListSection>
                                         {!isEnd && <ButtonContainer>

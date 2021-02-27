@@ -44,6 +44,7 @@ const SearchSection = (props: any) => {
                                 placeholder="Filter by title, benefits, companies, expertise"
                                 updatedValue={setDescription}
                                 value={description}
+                                icon="./description.svg"
                             />
                         </InputContainer>
                         <InputContainer>
@@ -53,6 +54,7 @@ const SearchSection = (props: any) => {
                                 placeholder="Filter by city, state, zip code or country"
                                 updatedValue={setLocation}
                                 value={location}
+                                icon="./location.svg"
                             />
                         </InputContainer>
                         <CheckboxContainer>

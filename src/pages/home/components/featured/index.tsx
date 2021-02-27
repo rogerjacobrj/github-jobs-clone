@@ -56,8 +56,8 @@ const FeaturedSection = (props: FeaturedSectionProps) => {
     const { jobs, featured, isLoading } = props;
 
     return (
-        <GradientWrapper>
-            <ContentContainer>
+        <GradientWrapper page="home">
+            <ContentContainer page="home">
                 <SectionTitle>
                     {isLoading ?
                         <TextLoader
@@ -73,9 +73,12 @@ const FeaturedSection = (props: FeaturedSectionProps) => {
                 <SectionWrapper>
                     <LeftSection>
                         <JobListSection>
-                            {jobs && jobs.length > 0 ? jobs.map((job, idx) => {
-                                return <JobItem data={job} key={`job-${idx}`} />
-                            }) : generateCount(3).map(() => <JobItemLoader />)}
+                            {isLoading ? generateCount(3).map((item, idx) => <JobItemLoader key={`item-${idx}`} />)
+                                :
+                                jobs && jobs.length > 0 && jobs.map((job, idx) => {
+                                    return <JobItem data={job} key={`job-${idx}`} />
+                                })
+                            }
                             {jobs.length > 0 && <LinkContainer>
                                 <CustomLink color="#1D80BE" title="More Awesome Jobs →" url="/positions" bold={1} />
                             </LinkContainer>}

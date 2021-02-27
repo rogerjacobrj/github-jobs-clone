@@ -17,14 +17,34 @@ export const GradientWrapper = styled.div`
             #FAFAFA 25%
         );
     `}
+    ${(props: GradientProps) => props.page === "list" && css`
+        background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.06),
+            #FAFAFA 25%
+        );
+    `}
     padding: 4px;
     margin-top: 0.86rem;
 `;
 
 export const ContentContainer = styled.div`
-    padding: 1rem;
-    background: #FFFFFF;
+    padding: 1rem;    
+    ${(props: GradientProps) => props.page === "home" && css`
+        background: linear-gradient(
+            to bottom,
+            #FFFFFF,
+            #FAFAFA 45%
+        );
+    `}
     ${(props: ContentContainerProps) => props.page === "details" && css`
+        background: linear-gradient(
+            to bottom,
+            #FFFFFF,
+            #FAFAFA 25%
+        );
+    `}
+    ${(props: ContentContainerProps) => props.page === "list" && css`
         background: linear-gradient(
             to bottom,
             #FFFFFF,

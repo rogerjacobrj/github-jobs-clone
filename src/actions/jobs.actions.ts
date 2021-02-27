@@ -18,12 +18,13 @@ export const fetchJobs = (page: number, pageType: string): Types.FetchJobs => {
 };
 
 export const fetchFetchJobsSuccess = (
-    data: Types.FeaturedJobItem[], pageType: string
+    data: Types.FeaturedJobItem[], pageType: string, page: number
 ): Types.FetchJobsSuccess => {
     return {
         type: ActionTypes.FETCH_JOBS_SUCCESS,
         data: data,
-        pageType: pageType
+        pageType: pageType,
+        page: page
     };
 };
 

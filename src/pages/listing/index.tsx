@@ -40,9 +40,7 @@ const ListingPage = () => {
     let { data, status, isEnd } = jobState;
 
     useEffect(() => {
-        if (data.length === 0) {
-            dispatch(fetchJobs(page, "list"));
-        }
+        dispatch(fetchJobs(page, "list"));
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

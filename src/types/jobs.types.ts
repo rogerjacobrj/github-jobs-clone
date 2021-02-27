@@ -14,6 +14,7 @@ export interface FetchJobsSuccess {
     type: ActionTypes.FETCH_JOBS_SUCCESS;
     data: FeaturedJobItem[];
     pageType: string;
+    page: number;
 }
 
 export interface FetchJobsError {

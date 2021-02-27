@@ -54,6 +54,9 @@ export const jobs = (
             if (action.pageType === "home") {
                 data = getRandomJobs(action.data);
             } else {
+                if (action.page === 1) {
+                    data = [];
+                }
                 data = data.concat(action.data);
             }
 

@@ -3,9 +3,10 @@ import { ActionTypes } from "./types";
 import * as Types from "../types/jobs.types";
 
 // Fetch featured jobs
-export const initFetchJobs = (): Types.InitFetchJobs => {
+export const initFetchJobs = (page: number): Types.InitFetchJobs => {
     return {
         type: ActionTypes.FETCH_JOBS_LOADING,
+        page: page
     };
 };
 

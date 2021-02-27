@@ -9,6 +9,7 @@ export interface JobFilters {
 // Fetch featured job/list
 export interface InitFetchJobs {
     type: ActionTypes.FETCH_JOBS_LOADING;
+    page: number;
 }
 
 export interface FetchJobs {
@@ -94,4 +95,9 @@ export interface JobStore {
     data: FeaturedJobItem[];
     company: Company;
     isEnd: boolean;
+    loadMore: {
+        status: string;
+        error: boolean;
+        message: string;
+    }
 }

@@ -4,7 +4,7 @@ import * as actions from "../actions/jobs.actions";
 import { FeaturedJobItem, FetchJobs, FetchJobsByFilter } from "../types/jobs.types";
 
 export function* getJobs(action: FetchJobs) {
-    yield put(actions.initFetchJobs());
+    yield put(actions.initFetchJobs(action.page));
 
     try {
         const response = yield axios.get(

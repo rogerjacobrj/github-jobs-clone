@@ -47,7 +47,7 @@ const ListingPage = () => {
     const [roleType, setRoleType] = useState<boolean>(false);
     let [page, setPage] = useState(1);
 
-    let { data, status, isEnd } = jobState;
+    let { data, status, isEnd, loadMore } = jobState;
 
     const getQueryParams = () => {
         const query = new URLSearchParams(locationHook.search);
@@ -158,14 +158,16 @@ const ListingPage = () => {
                                 <LeftSectionWrapper>
                                     <LeftSection>
                                         <JobListSection>
-                                            {data && data.length > 0 ? data.map((job, idx) => {
-                                                return <JobItem data={job} key={`job-${idx}`} />
-                                            }) : generateCount(10).map((item, idx) => <JobItemLoader key={`item-${idx}`} />)}
+                                            {isLoading(status) ?
+                                                generateCount(10).map((item, idx) => <JobItemLoader key={`item-${idx}`} />) :
+                                                data && data.length > 0 && data.map((job, idx) => {
+                                                    return <JobItem data={job} key={`job-${idx}`} />
+                                                })}
 
                                         </JobListSection>
                                         {!isEnd && <ButtonContainer>
                                             {data.length > 0 && <Button
-                                                text={`${isLoading(status) ? "Loading..." : "More Awesome Jobs"}`}
+                                                text={`${isLoading(loadMore.status) ? "Loading..." : "More Awesome Jobs"}`}
                                                 buttonType="clickEvent"
                                                 clickEvent={true}
                                                 clickHandler={loadMoreJobs} />}

@@ -14,6 +14,11 @@ const jobStore = {
         logo: "",
         jobCount: 0
     },
+    loadMore: {
+        status: ActionTypes.NOT_LOADED,
+        error: false,
+        message: "",
+    }
 };
 
 export const jobs = (
@@ -22,11 +27,23 @@ export const jobs = (
 ) => {
     switch (action.type) {
         case ActionTypes.FETCH_JOBS_LOADING: {
-            return {
-                ...state,
-                status: ActionTypes.IS_LOADING,
-                error: false,
-            };
+            if (action.page === 1) {
+                return {
+                    ...state,
+                    status: ActionTypes.IS_LOADING,
+                    error: false,
+                };
+            } else {
+                return {
+                    ...state,
+                    loadMore: {
+                        ...state.loadMore,
+                        status: ActionTypes.IS_LOADING,
+                        error: false,
+                    }
+                };
+            }
+
         }
 
         case ActionTypes.FETCH_JOBS_SUCCESS: {
@@ -56,8 +73,29 @@ export const jobs = (
             } else {
                 if (action.page === 1) {
                     data = [];
+                    data = data.concat(action.data);
+                    return {
+                        ...state,
+                        status: ActionTypes.LOADED,
+                        error: false,
+                        data: data,
+                        company: company,
+                        isEnd: isEnd
+                    };
+                } else {
+                    data = data.concat(action.data);
+                    return {
+                        ...state,
+                        data: data,
+                        company: company,
+                        isEnd: isEnd,
+                        loadMore: {
+                            ...state.loadMore,
+                            status: ActionTypes.LOADED,
+                            error: false,
+                        }
+                    };
                 }
-                data = data.concat(action.data);
             }
 
             return {
@@ -80,8 +118,11 @@ export const jobs = (
         case ActionTypes.FETCH_JOBS_BY_FILTER_LOADING: {
             return {
                 ...state,
-                status: ActionTypes.IS_LOADING,
-                error: false,
+                loadMore: {
+                    ...state.loadMore,
+                    status: ActionTypes.IS_LOADING,
+                    error: false,
+                }
             };
         }
 
@@ -114,18 +155,24 @@ export const jobs = (
 
             return {
                 ...state,
-                status: ActionTypes.LOADED,
-                error: false,
                 data: data,
-                isEnd: isEnd
+                isEnd: isEnd,
+                loadMore: {
+                    ...state.loadMore,
+                    status: ActionTypes.LOADED,
+                    error: false,
+                }
             };
         }
 
         case ActionTypes.FETCH_JOBS_BY_FILTER_ERROR: {
             return {
                 ...state,
-                status: ActionTypes.LOADING_FAILED,
-                error: true
+                loadMore: {
+                    ...state.loadMore,
+                    status: ActionTypes.NOT_LOADED,
+                    error: false,
+                }
             };
         }
 

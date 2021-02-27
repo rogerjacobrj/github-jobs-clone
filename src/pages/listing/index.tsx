@@ -164,13 +164,16 @@ const ListingPage = () => {
                                     <LeftSection>
                                         <JobListSection>
                                             {isLoading(status) ?
-                                                generateCount(10).map((item, idx) => <JobItemLoader key={`item-${idx}`} />) :
-                                                data && data.length > 0 ? data.map((job, idx) => {
-                                                    return <JobItem data={job} key={`job-${idx}`} />
-                                                }) :
+                                                generateCount(10).map((item, idx) => <JobItemLoader key={`item-${idx}`} />)
+                                                :
+                                                (isLoading(loadMore.status) && page === 1) ?
                                                     generateCount(10).map((item, idx) => <JobItemLoader key={`item-${idx}`} />)
+                                                    :
+                                                    data && data.length > 0 ? data.map((job, idx) => {
+                                                        return <JobItem data={job} key={`job-${idx}`} />
+                                                    }) :
+                                                        generateCount(10).map((item, idx) => <JobItemLoader key={`item-${idx}`} />)
                                             }
-
                                         </JobListSection>
                                         {!isEnd && <ButtonContainer>
                                             {data.length > 0 && <Button

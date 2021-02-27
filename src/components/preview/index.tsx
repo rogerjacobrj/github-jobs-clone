@@ -8,9 +8,13 @@ const modules = {
     }
 };
 
-const Preview = (props: any) => {
+interface PreviewProps {
+    content: string;
+}
+
+const Preview = (props: PreviewProps) => {
     const { content } = props;
-    
+
     return (
         <ReactQuill modules={modules} readOnly value={content} />
     );

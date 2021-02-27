@@ -28,7 +28,17 @@ const CheckboxContainer = styled.div`
 
 const ButtonContainer = styled.div``;
 
-const SearchSection = (props: any) => {
+interface SearchSectionProps {
+    description: string;
+    location: string;
+    roleType: boolean;
+    setDescription: (value: string) => void;
+    setLocation: (value: string) => void;
+    setRoleType: (value: boolean) => void;
+    clickHandler: () => void;
+}
+
+const SearchSection = (props: SearchSectionProps) => {
 
     const { description, location, roleType, setDescription, setLocation, setRoleType, clickHandler } = props;
 

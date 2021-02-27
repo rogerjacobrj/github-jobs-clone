@@ -16,7 +16,15 @@ const ListItemSeperator = styled.span`
     margin: 0 6px;
 `;
 
-const ListSection = (props: any) => {
+interface ListProps {
+    type: string;
+    color: string;
+    underline: number;
+    url: string;
+    data: { name: string }[];
+}
+
+const ListSection = (props: ListProps) => {
     const { type, color, underline, url, data } = props;
     const index = data && (data.length - 1);
 

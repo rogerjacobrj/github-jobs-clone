@@ -11,7 +11,10 @@ import {
 } from "../../components";
 import { isLoading } from "../../helpers/store";
 import { GradientWrapper, ContentContainer } from "../../styles";
-import { SectionWrapper, MainSection, FooterSection, SubWrapper, WidthContainer, SectionTitle } from "../../styles";
+import {
+    SectionWrapper, MainSection, FooterSection,
+    SubWrapper, WidthContainer, SectionTitle
+} from "../../styles";
 import { urlGenerator, generateCount } from "../../helpers";
 
 const LeftSectionWrapper = styled.div`
@@ -149,7 +152,7 @@ const ListingPage = () => {
                         <GradientWrapper page="list">
                             <ContentContainer page="list">
                                 <SectionTitle>
-                                    {isLoading(status) ?
+                                    {(isLoading(status) || isLoading(loadMore.status)) ?
                                         <TextLoader
                                             x={0}
                                             y={0}

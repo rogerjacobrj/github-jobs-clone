@@ -23,10 +23,19 @@ const InputField = styled.input`
     padding-left: 30px;
 `;
 
-const Input = (props: any) => {
+interface InputProps {
+    label: string;
+    placeholder: string;
+    showLabel: boolean;
+    updatedValue: (value: string) => void;
+    value: string;
+    icon: string;
+}
+
+const Input = (props: InputProps) => {
     const { label, placeholder, showLabel, updatedValue, value, icon } = props;
 
-    const onChangeHandler = (value: string | number) => {
+    const onChangeHandler = (value: string) => {
         updatedValue(value);
     };
 
